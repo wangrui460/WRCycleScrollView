@@ -1,6 +1,6 @@
 //
 //  DemoListController.swift
-//  WRNavigationBar_swift
+//  WRCycleScrollViewDemo
 //
 //  Created by wangrui on 2017/4/19.
 //  Copyright © 2017年 wangrui. All rights reserved.

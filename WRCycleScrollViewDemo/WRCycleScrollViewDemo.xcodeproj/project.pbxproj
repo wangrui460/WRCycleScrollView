@@ -14,6 +14,9 @@
 		1AC097CA1EC58670000F7206 /* WRCycleScrollViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097C91EC58670000F7206 /* WRCycleScrollViewDemoTests.swift */; };
 		1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D41EC5ADB4000F7206 /* DemoListController.swift */; };
 		1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */; };
+		1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */; };
+		1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */; };
+		FF78CC64A5D22B4B3B0104A1 /* Pods_WRCycleScrollViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,11 @@
 		1AC097CB1EC58670000F7206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC097D41EC5ADB4000F7206 /* DemoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoListController.swift; sourceTree = "<group>"; };
 		1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerImgController.swift; sourceTree = "<group>"; };
+		1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
+		1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
+		78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WRCycleScrollViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90A77BF7D3C01D069D4434A6 /* Pods-WRCycleScrollViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WRCycleScrollViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9E50E5441E9DD2F1F27ABDDF /* Pods-WRCycleScrollViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WRCycleScrollViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF78CC64A5D22B4B3B0104A1 /* Pods_WRCycleScrollViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +73,8 @@
 				1AC097B31EC58670000F7206 /* WRCycleScrollViewDemo */,
 				1AC097C81EC58670000F7206 /* WRCycleScrollViewDemoTests */,
 				1AC097B21EC58670000F7206 /* Products */,
+				7434DA17364FCE0371E74C6F /* Pods */,
+				236F58F6AC6ABB96E39A2765 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				1AC097B41EC58670000F7206 /* AppDelegate.swift */,
+				1AC097D81EC5B929000F7206 /* WRCycleScrollView */,
 				1AC097D41EC5ADB4000F7206 /* DemoListController.swift */,
 				1AC097B61EC58670000F7206 /* LocalImgController.swift */,
 				1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */,
@@ -99,6 +111,32 @@
 			path = WRCycleScrollViewDemoTests;
 			sourceTree = "<group>";
 		};
+		1AC097D81EC5B929000F7206 /* WRCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */,
+				1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */,
+			);
+			path = WRCycleScrollView;
+			sourceTree = "<group>";
+		};
+		236F58F6AC6ABB96E39A2765 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7434DA17364FCE0371E74C6F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90A77BF7D3C01D069D4434A6 /* Pods-WRCycleScrollViewDemo.debug.xcconfig */,
+				9E50E5441E9DD2F1F27ABDDF /* Pods-WRCycleScrollViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +144,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1AC097CE1EC58670000F7206 /* Build configuration list for PBXNativeTarget "WRCycleScrollViewDemo" */;
 			buildPhases = (
+				7F653579B77CDD70B12E5D4B /* [CP] Check Pods Manifest.lock */,
 				1AC097AD1EC58670000F7206 /* Sources */,
 				1AC097AE1EC58670000F7206 /* Frameworks */,
 				1AC097AF1EC58670000F7206 /* Resources */,
+				3BAA828292BFB6653889EF22 /* [CP] Embed Pods Frameworks */,
+				FC3127A1E3F7ABA9E1E56FD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,6 +239,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3BAA828292BFB6653889EF22 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F653579B77CDD70B12E5D4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FC3127A1E3F7ABA9E1E56FD3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1AC097AD1EC58670000F7206 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -206,7 +295,9 @@
 				1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */,
 				1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */,
 				1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */,
+				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,
+				1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +426,7 @@
 		};
 		1AC097CF1EC58670000F7206 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90A77BF7D3C01D069D4434A6 /* Pods-WRCycleScrollViewDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
@@ -349,6 +441,7 @@
 		};
 		1AC097D01EC58670000F7206 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E50E5441E9DD2F1F27ABDDF /* Pods-WRCycleScrollViewDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
