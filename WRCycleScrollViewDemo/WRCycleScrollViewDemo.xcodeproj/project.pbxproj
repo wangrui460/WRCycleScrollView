@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B41EC58670000F7206 /* AppDelegate.swift */; };
-		1AC097B71EC58670000F7206 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B61EC58670000F7206 /* ViewController.swift */; };
-		1AC097BA1EC58670000F7206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC097B81EC58670000F7206 /* Main.storyboard */; };
+		1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B61EC58670000F7206 /* LocalImgController.swift */; };
 		1AC097BC1EC58670000F7206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC097BB1EC58670000F7206 /* Assets.xcassets */; };
 		1AC097BF1EC58670000F7206 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC097BD1EC58670000F7206 /* LaunchScreen.storyboard */; };
 		1AC097CA1EC58670000F7206 /* WRCycleScrollViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097C91EC58670000F7206 /* WRCycleScrollViewDemoTests.swift */; };
+		1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D41EC5ADB4000F7206 /* DemoListController.swift */; };
+		1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +29,15 @@
 /* Begin PBXFileReference section */
 		1AC097B11EC58670000F7206 /* WRCycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRCycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC097B41EC58670000F7206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1AC097B61EC58670000F7206 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1AC097B91EC58670000F7206 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1AC097B61EC58670000F7206 /* LocalImgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImgController.swift; sourceTree = "<group>"; };
 		1AC097BB1EC58670000F7206 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AC097BE1EC58670000F7206 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AC097C01EC58670000F7206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC097C51EC58670000F7206 /* WRCycleScrollViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WRCycleScrollViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC097C91EC58670000F7206 /* WRCycleScrollViewDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRCycleScrollViewDemoTests.swift; sourceTree = "<group>"; };
 		1AC097CB1EC58670000F7206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AC097D41EC5ADB4000F7206 /* DemoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoListController.swift; sourceTree = "<group>"; };
+		1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerImgController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				1AC097B41EC58670000F7206 /* AppDelegate.swift */,
-				1AC097B61EC58670000F7206 /* ViewController.swift */,
-				1AC097B81EC58670000F7206 /* Main.storyboard */,
+				1AC097D41EC5ADB4000F7206 /* DemoListController.swift */,
+				1AC097B61EC58670000F7206 /* LocalImgController.swift */,
+				1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */,
 				1AC097BB1EC58670000F7206 /* Assets.xcassets */,
 				1AC097BD1EC58670000F7206 /* LaunchScreen.storyboard */,
 				1AC097C01EC58670000F7206 /* Info.plist */,
@@ -183,7 +186,6 @@
 			files = (
 				1AC097BF1EC58670000F7206 /* LaunchScreen.storyboard in Resources */,
 				1AC097BC1EC58670000F7206 /* Assets.xcassets in Resources */,
-				1AC097BA1EC58670000F7206 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC097B71EC58670000F7206 /* ViewController.swift in Sources */,
+				1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */,
+				1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */,
+				1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,14 +229,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1AC097B81EC58670000F7206 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1AC097B91EC58670000F7206 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1AC097BD1EC58670000F7206 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -343,6 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -356,6 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +410,7 @@
 				1AC097D01EC58670000F7206 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1AC097D11EC58670000F7206 /* Build configuration list for PBXNativeTarget "WRCycleScrollViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +419,7 @@
 				1AC097D31EC58670000F7206 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
