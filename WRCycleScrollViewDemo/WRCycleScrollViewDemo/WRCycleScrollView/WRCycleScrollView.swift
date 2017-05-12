@@ -15,19 +15,47 @@ enum ImagesType:Int {
 
 class WRCycleScrollView: UIView
 {
-    fileprivate var collectionView:UICollectionView!
-    fileprivate let CellID = "WRCycleCell"
+    ///////////////////////////////////////////////////////
+    // 对外提供的属性
+    var imgsType:ImagesType = .SERVER     // default SERVER
     var localImgArray:[String]? {
         didSet {
             collectionView.reloadData()
         }
     }
+    var serverImgArray:[String]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
-    init(frame: CGRect, imgArray:[String]? = nil)
+    ///////////////////////////////////////////////////////
+    // 内部属性
+    fileprivate var flowLayout:UICollectionViewFlowLayout!
+    fileprivate var collectionView:UICollectionView!
+    fileprivate let CellID = "WRCycleCell"
+    
+    /// 构造方法
+    ///
+    /// - Parameters:
+    ///   - frame: frame
+    ///   - type:  ImagesType    default:Server
+    ///   - imgs:  imgs          default:nil
+    init(frame: CGRect, type:ImagesType = .SERVER, imgs:[String]? = nil)
     {
         super.init(frame: frame)
-        if let local = imgArray {
-            localImgArray = local
+        imgsType = type
+        if imgsType == .SERVER
+        {
+            if let server = imgs {
+                serverImgArray = server
+            }
+        }
+        else
+        {
+            if let local = imgs {
+                localImgArray = local
+            }
         }
         setupCollectionView()
     }
@@ -37,7 +65,7 @@ class WRCycleScrollView: UIView
     }
     
     deinit {
-        print("WRCycleScrollView---deinit")
+        print("WRCycleScrollView  deinit")
     }
     
     override func layoutSubviews()
@@ -54,7 +82,7 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
 {
     func setupCollectionView()
     {
-        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = frame.size
         flowLayout.minimumLineSpacing = 0
         flowLayout.scrollDirection = .horizontal
@@ -71,13 +99,22 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return localImgArray?.count ?? 0
+        if imgsType == .SERVER {
+            return serverImgArray?.count ?? 0
+        } else {
+            return localImgArray?.count ?? 0
+        }
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        cell.localImgPath = localImgArray?[indexPath.item]
+        
+        if imgsType == .SERVER {
+            cell.serverImgPath = serverImgArray?[indexPath.item]
+        } else {
+            cell.localImgPath = localImgArray?[indexPath.item]
+        }
         return cell
     }
     

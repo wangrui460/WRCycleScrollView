@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import Kingfisher
  
 class WRCycleCell: UICollectionViewCell
 {
-    private var imgView:UIImageView!
+    ///////////////////////////////////////////////////////
+    // 对外提供的属性
     var localImgPath:String? {
         didSet {
             imgView.image = UIImage(named: localImgPath!)
         }
     }
-    private var webImgPath:String? {
+    var serverImgPath:String? {
         didSet {
-            imgView.image = UIImage(named: webImgPath!)
+            imgView.kf.setImage(with: URL(string: serverImgPath!))
         }
     }
+ 
+    ///////////////////////////////////////////////////////
+    // 内部属性
+    private var imgView:UIImageView!
+ 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,10 +38,15 @@ class WRCycleCell: UICollectionViewCell
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("WRCycleCell  deinit")
+    }
+    
     func setupImgView()
     {
         imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
+        imgView.clipsToBounds = true
         addSubview(imgView)
     }
     

@@ -19,7 +19,7 @@ class LocalImgController: UIViewController
         let height = 662 * kScreenWidth / 1080.0
         let frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: height)
         let localImages = ["localImg1","localImg2","localImg3","localImg4","localImg5"]
-        let cycleScrollView = WRCycleScrollView(frame: frame, imgArray: localImages)
+        let cycleScrollView = WRCycleScrollView(frame: frame, type: .LOCAL, imgs: localImages)
         view.addSubview(cycleScrollView)
     }
 }
