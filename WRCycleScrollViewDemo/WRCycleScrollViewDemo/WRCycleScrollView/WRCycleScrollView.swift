@@ -28,6 +28,11 @@ class WRCycleScrollView: UIView
             collectionView.reloadData()
         }
     }
+    var descTextArray:[String]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     ///////////////////////////////////////////////////////
     // 内部属性
@@ -39,9 +44,10 @@ class WRCycleScrollView: UIView
     ///
     /// - Parameters:
     ///   - frame: frame
-    ///   - type:  ImagesType    default:Server
-    ///   - imgs:  imgs          default:nil
-    init(frame: CGRect, type:ImagesType = .SERVER, imgs:[String]? = nil)
+    ///   - type:  ImagesType                         default:Server
+    ///   - imgs:  localImgArray / serverImgArray     default:nil
+    ///   - descs: descTextArray                      default:nil
+    init(frame: CGRect, type:ImagesType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil)
     {
         super.init(frame: frame)
         imgsType = type
@@ -56,6 +62,9 @@ class WRCycleScrollView: UIView
             if let local = imgs {
                 localImgArray = local
             }
+        }
+        if let descTexts = descs {
+            descTextArray = descTexts
         }
         setupCollectionView()
     }
@@ -108,12 +117,14 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
+        let curItem = indexPath.item
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
+        cell.descText = descTextArray?[curItem]
         
         if imgsType == .SERVER {
-            cell.serverImgPath = serverImgArray?[indexPath.item]
+            cell.serverImgPath = serverImgArray?[curItem]
         } else {
-            cell.localImgPath = localImgArray?[indexPath.item]
+            cell.localImgPath = localImgArray?[curItem]
         }
         return cell
     }

@@ -23,15 +23,53 @@ class WRCycleCell: UICollectionViewCell
             imgView.kf.setImage(with: URL(string: serverImgPath!))
         }
     }
+    var descText:String? {
+        didSet {
+            descLabel.isHidden = false
+            bottomView.isHidden = false
+            descLabel.text = descText
+        }
+    }
+    
+    var descLabelFont: UIFont = UIFont(name: "Helvetica-Bold", size: 18)! {
+        didSet {
+            descLabel.font = descLabelFont
+        }
+    }
+    var descLabelTextColor: UIColor = UIColor.white {
+        didSet {
+            descLabel.textColor = descLabelTextColor
+        }
+    }
+    var descLabelHeight: CGFloat = 60 {
+        didSet {
+            descLabel.frame.size.height = descLabelHeight
+        }
+    }
+    var descLabelTextAlignment:NSTextAlignment = .left {
+        didSet {
+            descLabel.textAlignment = descLabelTextAlignment
+        }
+    }
+    
+    var bottomViewBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.5) {
+        didSet {
+            bottomView.backgroundColor = bottomViewBackgroundColor
+        }
+    }
  
     ///////////////////////////////////////////////////////
-    // 内部属性
+    /// 内部属性
     private var imgView:UIImageView!
- 
+    private var descLabel:UILabel!
+    private var bottomView:UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor.white
         setupImgView()
+        setupDescLabel()
+        setupBottomView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +80,7 @@ class WRCycleCell: UICollectionViewCell
         print("WRCycleCell  deinit")
     }
     
-    func setupImgView()
+    private func setupImgView()
     {
         imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
@@ -50,9 +88,44 @@ class WRCycleCell: UICollectionViewCell
         addSubview(imgView)
     }
     
+    private func setupDescLabel()
+    {
+        descLabel = UILabel()
+        descLabel.text = descText
+        descLabel.numberOfLines = 0
+        descLabel.font = descLabelFont
+        descLabel.textColor = descLabelTextColor
+        descLabel.frame.size.height = descLabelHeight
+        descLabel.textAlignment = descLabelTextAlignment
+        addSubview(descLabel)
+        descLabel.isHidden = true
+    }
+    
+    private func setupBottomView()
+    {
+        bottomView = UIView()
+        bottomView.backgroundColor = bottomViewBackgroundColor
+        addSubview(bottomView)
+        bottomView.isHidden = true
+    }
+    
     override func layoutSubviews()
     {
         super.layoutSubviews()
         imgView.frame = self.bounds
+        
+        if let _ = descText
+        {
+            let margin:CGFloat = 16
+            let labelWidth     = kScreenWidth - 2 * margin
+            let labelHeight    = descLabelHeight
+            let labelY         = bounds.height - labelHeight
+            descLabel.frame    = CGRect(x: margin, y: labelY, width: labelWidth, height: labelHeight)
+            bottomView.frame   = CGRect(x: 0, y: labelY, width: kScreenWidth, height: labelHeight)
+            bringSubview(toFront: descLabel)
+        }
     }
 }
+
+
+
