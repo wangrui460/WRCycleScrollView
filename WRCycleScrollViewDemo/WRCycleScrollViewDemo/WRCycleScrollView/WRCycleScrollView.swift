@@ -36,6 +36,16 @@ class WRCycleScrollView: UIView
     var descLabelTextAlignment:NSTextAlignment?
     var bottomViewBackgroundColor: UIColor?
     
+    var autoScrollInterval: Double = 2
+    var isAutoScroll:Bool = true {
+        didSet {
+            timer?.invalidate()
+            timer = nil
+            if isAutoScroll == true {
+                setupTimer()
+            }
+        }
+    }
     
     ///////////////////////////////////////////////////////
     // 对外提供的方法
@@ -49,6 +59,8 @@ class WRCycleScrollView: UIView
     fileprivate var flowLayout:UICollectionViewFlowLayout?
     fileprivate var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
+    
+    fileprivate var timer:Timer?
     
     /// 构造方法
     ///
@@ -96,7 +108,34 @@ class WRCycleScrollView: UIView
 }
 
 
-// MARK: - collectionView
+// MARK: - 无限轮播相关
+extension WRCycleScrollView
+{
+    fileprivate func setupTimer()
+    {
+        timer = Timer(timeInterval: autoScrollInterval, target: self, selector: #selector(changeCycleCell), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer!, forMode: .commonModes)
+    }
+    
+    func changeCycleCell()
+    {
+        
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        timer?.invalidate()
+        timer = nil
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        if isAutoScroll == true {
+            setupTimer()
+        }
+    }
+}
+
+
+// MARK: - WRCycleCell 相关
 extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
 {
     fileprivate func setupCollectionView()
