@@ -10,6 +10,8 @@ import UIKit
 
 class ServerImgController: UIViewController
 {
+    var cycleScrollView:WRCycleScrollView?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -22,7 +24,14 @@ class ServerImgController: UIViewController
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007587372591.png",
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007388249407.png",
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
-        let cycleScrollView = WRCycleScrollView(frame: frame, type: .SERVER, imgs: serverImages)
-        view.addSubview(cycleScrollView)
+        cycleScrollView = WRCycleScrollView(frame: frame, type: .SERVER, imgs: serverImages)
+        view.addSubview(cycleScrollView!)
     }
+    
+    // 改变 WRCycleScrollView 的大小
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        cycleScrollView?.frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: 150)
+    }
+    
 }

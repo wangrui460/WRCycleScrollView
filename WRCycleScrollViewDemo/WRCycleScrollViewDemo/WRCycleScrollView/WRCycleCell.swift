@@ -31,6 +31,12 @@ class WRCycleCell: UICollectionViewCell
         }
     }
     
+    override var frame: CGRect {
+        didSet {
+            bounds.size = frame.size
+        }
+    }
+    
     var descLabelFont: UIFont = UIFont(name: "Helvetica-Bold", size: 18)! {
         didSet {
             descLabel.font = descLabelFont

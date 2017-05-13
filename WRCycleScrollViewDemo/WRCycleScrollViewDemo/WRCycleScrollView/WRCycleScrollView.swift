@@ -18,26 +18,35 @@ class WRCycleScrollView: UIView
     ///////////////////////////////////////////////////////
     // 对外提供的属性
     var imgsType:ImagesType = .SERVER     // default SERVER
-    var localImgArray:[String]? {
+    var localImgArray :[String]?
+    var serverImgArray:[String]?
+    var descTextArray :[String]?
+    
+    override var frame: CGRect {
         didSet {
-            collectionView.reloadData()
-        }
-    }
-    var serverImgArray:[String]? {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    var descTextArray:[String]? {
-        didSet {
-            collectionView.reloadData()
+            flowLayout?.itemSize = frame.size
+            collectionView?.frame = bounds
         }
     }
     
+    var descLabelFont: UIFont?
+    var descLabelTextColor: UIColor?
+    var descLabelHeight: CGFloat?
+    var descLabelTextAlignment:NSTextAlignment?
+    var bottomViewBackgroundColor: UIColor?
+    
+    
+    ///////////////////////////////////////////////////////
+    // 对外提供的方法
+    func reloadData() {
+        collectionView?.reloadData()
+    }
+    
+    
     ///////////////////////////////////////////////////////
     // 内部属性
-    fileprivate var flowLayout:UICollectionViewFlowLayout!
-    fileprivate var collectionView:UICollectionView!
+    fileprivate var flowLayout:UICollectionViewFlowLayout?
+    fileprivate var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
     
     /// 构造方法
@@ -81,7 +90,7 @@ class WRCycleScrollView: UIView
     {
         super.layoutSubviews()
         // 解决WRCycleCell自动偏移问题
-        collectionView.contentInset = .zero
+        collectionView?.contentInset = .zero
     }
 }
 
@@ -89,21 +98,22 @@ class WRCycleScrollView: UIView
 // MARK: - collectionView
 extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
 {
-    func setupCollectionView()
+    fileprivate func setupCollectionView()
     {
         flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = frame.size
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.scrollDirection = .horizontal
+        flowLayout?.itemSize = frame.size
+        flowLayout?.minimumLineSpacing = 0
+        flowLayout?.scrollDirection = .horizontal
         
-        collectionView = UICollectionView(frame: bounds, collectionViewLayout: flowLayout)
-        collectionView.register(WRCycleCell.self, forCellWithReuseIdentifier: CellID)
-        collectionView.isPagingEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView = UICollectionView(frame: bounds, collectionViewLayout: flowLayout!)
+        collectionView?.register(WRCycleCell.self, forCellWithReuseIdentifier: CellID)
+        collectionView?.isPagingEnabled = true
+        collectionView?.bounces = false
+        collectionView?.showsVerticalScrollIndicator = false
+        collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        addSubview(collectionView!)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -119,7 +129,15 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     {
         let curItem = indexPath.item
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        cell.descText = descTextArray?[curItem]
+        if let descs = descTextArray
+        {
+            cell.descText = descs[curItem]
+            cell.descLabelFont = (descLabelFont == nil) ? cell.descLabelFont : descLabelFont!
+            cell.descLabelTextColor = (descLabelTextColor == nil) ? cell.descLabelTextColor : descLabelTextColor!
+            cell.descLabelHeight = (descLabelHeight == nil) ? cell.descLabelHeight : descLabelHeight!
+            cell.descLabelTextAlignment = (descLabelTextAlignment == nil) ? cell.descLabelTextAlignment : descLabelTextAlignment!
+            cell.bottomViewBackgroundColor = (bottomViewBackgroundColor == nil) ? cell.bottomViewBackgroundColor : bottomViewBackgroundColor!
+        }
         
         if imgsType == .SERVER {
             cell.serverImgPath = serverImgArray?[curItem]
