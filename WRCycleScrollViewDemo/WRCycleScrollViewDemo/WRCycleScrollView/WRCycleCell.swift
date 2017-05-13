@@ -25,8 +25,8 @@ class WRCycleCell: UICollectionViewCell
     }
     var descText:String? {
         didSet {
-            descLabel.isHidden = false
-            bottomView.isHidden = false
+            descLabel.isHidden  = (descText == nil) ? true : false
+            bottomView.isHidden = (descText == nil) ? true : false
             descLabel.text = descText
         }
     }

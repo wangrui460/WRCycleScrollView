@@ -129,9 +129,9 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     {
         let curItem = indexPath.item
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        if let descs = descTextArray
+        cell.descText = descTextArray?[curItem]
+        if let _ = descTextArray
         {
-            cell.descText = descs[curItem]
             cell.descLabelFont = (descLabelFont == nil) ? cell.descLabelFont : descLabelFont!
             cell.descLabelTextColor = (descLabelTextColor == nil) ? cell.descLabelTextColor : descLabelTextColor!
             cell.descLabelHeight = (descLabelHeight == nil) ? cell.descLabelHeight : descLabelHeight!
