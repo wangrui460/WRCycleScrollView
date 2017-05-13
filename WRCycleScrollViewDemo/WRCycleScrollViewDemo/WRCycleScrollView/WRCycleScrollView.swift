@@ -73,22 +73,22 @@ class WRCycleScrollView: UIView
     {
         super.init(frame: frame)
         imgsType = type
-        if imgsType == .SERVER
-        {
+        if imgsType == .SERVER {
             if let server = imgs {
                 serverImgArray = server
             }
         }
-        else
-        {
+        else {
             if let local = imgs {
                 localImgArray = local
             }
         }
+        
         if let descTexts = descs {
             descTextArray = descTexts
         }
         setupCollectionView()
+        setupTimer()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -99,11 +99,21 @@ class WRCycleScrollView: UIView
         print("WRCycleScrollView  deinit")
     }
     
-    override func layoutSubviews()
-    {
+    override func layoutSubviews() {
         super.layoutSubviews()
         // 解决WRCycleCell自动偏移问题
         collectionView?.contentInset = .zero
+    }
+    
+    // 解决定时器导致的循环引用
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
+        // 展现的时候newSuper不为nil，离开的时候newSuper为nil
+        guard let _ = newSuperview else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
     }
 }
 
