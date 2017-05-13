@@ -36,7 +36,9 @@ class WRCycleScrollView: UIView
     var descLabelTextAlignment:NSTextAlignment?
     var bottomViewBackgroundColor: UIColor?
     
+    // 如果自动轮播，表示轮播间隔时间 default = 2s
     var autoScrollInterval: Double = 2
+    var isEndlessScroll:Bool = true
     var isAutoScroll:Bool = true {
         didSet {
             timer?.invalidate()
@@ -51,6 +53,7 @@ class WRCycleScrollView: UIView
     // 对外提供的方法
     func reloadData() {
         collectionView?.reloadData()
+        changeToFirstCycleCell()
     }
     
     
@@ -61,6 +64,13 @@ class WRCycleScrollView: UIView
     fileprivate let CellID = "WRCycleCell"
     
     fileprivate var timer:Timer?
+    fileprivate var realItemCount:Int {
+        if imgsType == .LOCAL {
+            return (isEndlessScroll == true) ? localImgArray!.count * 128 : localImgArray!.count
+        } else {
+            return (isEndlessScroll == true) ? serverImgArray!.count * 128 : serverImgArray!.count
+        }
+    }
     
     /// 构造方法
     ///
@@ -121,23 +131,42 @@ class WRCycleScrollView: UIView
 // MARK: - 无限轮播相关
 extension WRCycleScrollView
 {
-    fileprivate func setupTimer()
+    func setupTimer()
     {
         timer = Timer(timeInterval: autoScrollInterval, target: self, selector: #selector(changeCycleCell), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
     
+    fileprivate func changeToFirstCycleCell()
+    {
+        let item = (isEndlessScroll == true) ? (realItemCount / 2) : 0
+        let indexPath = IndexPath(item: item, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: false)
+    }
+    
     func changeCycleCell()
     {
-        
+        guard realItemCount  != 0 ,
+              let collection = collectionView,
+              let layout = flowLayout else {
+            return
+        }
+        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
+        let nextItem = curItem + 1
+        if curItem == realItemCount {
+            changeToFirstCycleCell()
+        }
+        else {
+            let indexPath = IndexPath(item: nextItem, section: 0)
+            collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         timer?.invalidate()
         timer = nil
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
-    {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if isAutoScroll == true {
             setupTimer()
         }
@@ -168,18 +197,23 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if imgsType == .SERVER {
-            return serverImgArray?.count ?? 0
-        } else {
-            return localImgArray?.count ?? 0
-        }
+        return realItemCount
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let curItem = indexPath.item
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        cell.descText = descTextArray?[curItem]
+        let imgsCount:Int!
+        if imgsType == .SERVER {
+            imgsCount = serverImgArray?.count
+            cell.serverImgPath = serverImgArray?[curItem % imgsCount]
+        } else {
+            imgsCount = localImgArray?.count
+            cell.localImgPath = localImgArray?[curItem % imgsCount]
+        }
+        cell.descText = descTextArray?[curItem % imgsCount]
+        
         if let _ = descTextArray
         {
             cell.descLabelFont = (descLabelFont == nil) ? cell.descLabelFont : descLabelFont!
@@ -189,11 +223,6 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
             cell.bottomViewBackgroundColor = (bottomViewBackgroundColor == nil) ? cell.bottomViewBackgroundColor : bottomViewBackgroundColor!
         }
         
-        if imgsType == .SERVER {
-            cell.serverImgPath = serverImgArray?[curItem]
-        } else {
-            cell.localImgPath = localImgArray?[curItem]
-        }
         return cell
     }
     
