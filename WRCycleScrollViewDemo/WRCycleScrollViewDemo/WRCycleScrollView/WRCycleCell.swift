@@ -5,6 +5,7 @@
 //  Created by wangrui on 2017/5/12.
 //  Copyright © 2017年 wangrui. All rights reserved.
 //
+//  Github地址：https://github.com/wangrui460/WRCycleScrollView
 
 import UIKit
 import Kingfisher
