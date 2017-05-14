@@ -14,10 +14,20 @@ enum ImagesType:Int {
     case LOCAL = 1
 }
 
+@objc protocol WRCycleScrollViewDelegate
+{
+    /// 点击图片回调
+    @objc optional func cycleScrollViewDidSelect(at index:Int, cycleScrollView:WRCycleScrollView)
+    /// 图片滚动回调
+    @objc optional func cycleScrollViewDidScroll(to index:Int, cycleScrollView:WRCycleScrollView)
+}
+
 class WRCycleScrollView: UIView
 {
     ///////////////////////////////////////////////////////
     // 对外提供的属性
+    weak var delegate:WRCycleScrollViewDelegate?
+    
     var imgsType:ImagesType = .SERVER     // default SERVER
     var localImgArray :[String]?
     var serverImgArray:[String]?
@@ -64,6 +74,13 @@ class WRCycleScrollView: UIView
     fileprivate let CellID = "WRCycleCell"
     
     fileprivate var timer:Timer?
+    fileprivate var imgsCount:Int {
+        if imgsType == .LOCAL {
+            return localImgArray!.count
+        } else {
+            return serverImgArray!.count
+        }
+    }
     fileprivate var realItemCount:Int {
         if imgsType == .LOCAL {
             return (isEndlessScroll == true) ? localImgArray!.count * 128 : localImgArray!.count
@@ -180,6 +197,17 @@ extension WRCycleScrollView
             setupTimer()
         }
     }
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
+    {
+        guard realItemCount  != 0 ,
+            let collection = collectionView,
+            let layout = flowLayout else {
+                return
+        }
+        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
+        let indexOnPageControl = curItem % imgsCount
+        delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
+    }
 }
 
 
@@ -237,7 +265,8 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        let indexOnPageControll = indexPath.item % imgsCount
+        delegate?.cycleScrollViewDidSelect?(at: indexOnPageControll, cycleScrollView: self)
     }
 }
 

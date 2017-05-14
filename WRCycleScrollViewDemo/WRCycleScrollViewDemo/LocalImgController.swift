@@ -28,6 +28,7 @@ class LocalImgController: UIViewController
                      "阿米尔汗在印度的影响力，我国的哪位影视明星能与之齐名呢？"]
         cycleScrollView = WRCycleScrollView(frame:frame, type:.LOCAL, imgs:localImages, descs:descs)
         cycleScrollView?.isEndlessScroll = false
+        cycleScrollView?.delegate = self
         view.addSubview(cycleScrollView!)
     }
     
@@ -44,6 +45,20 @@ class LocalImgController: UIViewController
         cycleScrollView?.bottomViewBackgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
         
         cycleScrollView?.reloadData()
+    }
+}
+
+extension LocalImgController: WRCycleScrollViewDelegate
+{
+    /// 点击图片回调
+    func cycleScrollViewDidSelect(at index:Int, cycleScrollView:WRCycleScrollView)
+    {
+        print("点击了第\(index+1)个图片")
+    }
+    /// 图片滚动回调
+    func cycleScrollViewDidScroll(to index:Int, cycleScrollView:WRCycleScrollView)
+    {
+        print("滚动到了第\(index+1)个图片")
     }
 }
 
