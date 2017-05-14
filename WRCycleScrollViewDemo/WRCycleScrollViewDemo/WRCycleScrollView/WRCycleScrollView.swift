@@ -36,8 +36,8 @@ class WRCycleScrollView: UIView
     var descLabelTextAlignment:NSTextAlignment?
     var bottomViewBackgroundColor: UIColor?
     
-    // 如果自动轮播，表示轮播间隔时间 default = 2s
-    var autoScrollInterval: Double = 2
+    // 如果自动轮播，表示轮播间隔时间 default = 1.5s
+    var autoScrollInterval: Double = 1.5
     var isEndlessScroll:Bool = true
     var isAutoScroll:Bool = true {
         didSet {
@@ -53,7 +53,7 @@ class WRCycleScrollView: UIView
     // 对外提供的方法
     func reloadData() {
         collectionView?.reloadData()
-        changeToFirstCycleCell()
+        changeToFirstCycleCell(animated: false)
     }
     
     
@@ -98,7 +98,9 @@ class WRCycleScrollView: UIView
             descTextArray = descTexts
         }
         setupCollectionView()
-        setupTimer()
+        if isAutoScroll == true {
+            setupTimer()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -113,6 +115,7 @@ class WRCycleScrollView: UIView
         super.layoutSubviews()
         // 解决WRCycleCell自动偏移问题
         collectionView?.contentInset = .zero
+        changeToFirstCycleCell(animated: false)
     }
     
     // 解决定时器导致的循环引用
@@ -137,13 +140,17 @@ extension WRCycleScrollView
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
     
-    fileprivate func changeToFirstCycleCell()
+    fileprivate func changeToFirstCycleCell(animated:Bool)
     {
+        guard let collection = collectionView else {
+            return
+        }
         let item = (isEndlessScroll == true) ? (realItemCount / 2) : 0
         let indexPath = IndexPath(item: item, section: 0)
-        collectionView?.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: false)
+        collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
     }
     
+    // 执行这个方法的前提是 isAutoScroll = true
     func changeCycleCell()
     {
         guard realItemCount  != 0 ,
@@ -152,12 +159,14 @@ extension WRCycleScrollView
             return
         }
         let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        let nextItem = curItem + 1
-        if curItem == realItemCount {
-            changeToFirstCycleCell()
+        if curItem == realItemCount - 1
+        {
+            let animated = (isEndlessScroll == true) ? false : true
+            changeToFirstCycleCell(animated: animated)
         }
-        else {
-            let indexPath = IndexPath(item: nextItem, section: 0)
+        else
+        {
+            let indexPath = IndexPath(item: curItem + 1, section: 0)
             collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
         }
     }
