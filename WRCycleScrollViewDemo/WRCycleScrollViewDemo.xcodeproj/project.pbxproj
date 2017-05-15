@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DD0521ECA078000533BE9 /* WRProxy.swift */; };
 		1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B41EC58670000F7206 /* AppDelegate.swift */; };
 		1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B61EC58670000F7206 /* LocalImgController.swift */; };
 		1AC097BC1EC58670000F7206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC097BB1EC58670000F7206 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A9DD0521ECA078000533BE9 /* WRProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
 		1AC097B11EC58670000F7206 /* WRCycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRCycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC097B41EC58670000F7206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AC097B61EC58670000F7206 /* LocalImgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImgController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			children = (
 				1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */,
 				1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */,
+				1A9DD0521ECA078000533BE9 /* WRProxy.swift */,
 			);
 			path = WRCycleScrollView;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,
 				1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */,
+				1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

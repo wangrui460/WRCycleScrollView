@@ -45,7 +45,6 @@ class ServerImgController: UIViewController
         cycleScrollView?.showPageControl = true
         cycleScrollView?.reloadData()
     }
-    
 }
 
 extension ServerImgController: WRCycleScrollViewDelegate
