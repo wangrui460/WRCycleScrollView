@@ -43,7 +43,7 @@ class LocalImgController: UIViewController
         cycleScrollView?.descLabelHeight = 50
         cycleScrollView?.descLabelTextAlignment = NSTextAlignment.center
         cycleScrollView?.bottomViewBackgroundColor = UIColor.darkGray.withAlphaComponent(0.7)
-        
+        cycleScrollView?.showPageControl = false
         cycleScrollView?.reloadData()
     }
 }

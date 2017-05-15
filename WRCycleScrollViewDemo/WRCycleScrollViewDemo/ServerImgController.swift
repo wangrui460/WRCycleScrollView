@@ -27,6 +27,7 @@ class ServerImgController: UIViewController
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
         cycleScrollView = WRCycleScrollView(frame: frame, type: .SERVER, imgs: serverImages)
         view.addSubview(cycleScrollView!)
+        cycleScrollView?.showPageControl = false
         cycleScrollView?.delegate = self
     }
     
@@ -41,6 +42,7 @@ class ServerImgController: UIViewController
                      "阿米尔汗在印度的影响力，我国的哪位影视明星能与之齐名呢？"]
         cycleScrollView?.descTextArray = descs
         cycleScrollView?.frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: 150)
+        cycleScrollView?.showPageControl = true
         cycleScrollView?.reloadData()
     }
     
