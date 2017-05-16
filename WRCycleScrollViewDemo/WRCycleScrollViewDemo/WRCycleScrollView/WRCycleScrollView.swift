@@ -60,7 +60,6 @@ class WRCycleScrollView: UIView
     }
     var showPageControl: Bool = true {
         didSet {
-//            self.pageControl?.isHidden = !showPageControl
             setupPageControl()
         }
     }
@@ -81,6 +80,7 @@ class WRCycleScrollView: UIView
         timer?.invalidate()
         timer = nil
         collectionView?.reloadData()
+        setupPageControl()
         changeToFirstCycleCell(animated: false)
         if isAutoScroll == true {
             setupTimer()
@@ -245,6 +245,15 @@ extension WRCycleScrollView
         if isAutoScroll == true {
             setupTimer()
         }
+        guard realItemCount  != 0 ,
+            let collection = collectionView,
+            let layout = flowLayout else {
+                return
+        }
+        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
+        let indexOnPageControl = (curItem % imgsCount + 1 == imgsCount) ? 0 : curItem % imgsCount + 1
+        delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
+        pageControl?.currentPage = indexOnPageControl
     }
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     {
