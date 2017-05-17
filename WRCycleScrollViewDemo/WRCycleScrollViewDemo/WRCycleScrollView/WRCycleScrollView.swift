@@ -9,6 +9,8 @@
 
 import UIKit
 
+private let KEndlessScrollTimes = 128
+
 @objc protocol WRCycleScrollViewDelegate
 {
     /// 点击图片回调
@@ -61,6 +63,7 @@ class WRCycleScrollView: UIView
     var isAutoScroll:Bool = true {
         didSet {
             timer?.invalidate()
+            timer = nil
             if isAutoScroll == true {
                 setupTimer()
             }
@@ -107,16 +110,13 @@ class WRCycleScrollView: UIView
 // MARK: 内部属性
 //=======================================================
     fileprivate var imgsCount:Int {
-        guard let imgs = proxy?.imgArray else {
-            return 0
-        }
-        return imgs.count
+        return (isEndlessScroll == true) ? (itemsInSection / KEndlessScrollTimes) : itemsInSection
     }
-    fileprivate var itemsCount:Int {
+    fileprivate var itemsInSection:Int {
         guard let imgs = proxy?.imgArray else {
             return 0
         }
-        return (isEndlessScroll == true) ? imgs.count * 128 : imgs.count
+        return (isEndlessScroll == true) ? (imgs.count * KEndlessScrollTimes) : imgs.count
     }
     fileprivate var proxy:Proxy!
     fileprivate var flowLayout:UICollectionViewFlowLayout?
@@ -209,12 +209,12 @@ extension WRCycleScrollView
     
     fileprivate func changeToFirstCycleCell(animated:Bool)
     {
-        guard itemsCount  != 0 ,
+        guard itemsInSection  != 0 ,
             let collection = collectionView,
             let _ = flowLayout else {
                 return
         }
-        let firstItem = (isEndlessScroll == true) ? (itemsCount / 2) : 0
+        let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
         let indexPath = IndexPath(item: firstItem, section: 0)
         collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
     }
@@ -222,13 +222,13 @@ extension WRCycleScrollView
     // 执行这个方法的前提是 isAutoScroll = true
     func changeCycleCell()
     {
-        guard itemsCount  != 0 ,
+        guard itemsInSection  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
         }
         let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        if curItem == itemsCount - 1
+        if curItem == itemsInSection - 1
         {
             let animated = (isEndlessScroll == true) ? false : true
             changeToFirstCycleCell(animated: animated)
@@ -250,7 +250,7 @@ extension WRCycleScrollView
         if isAutoScroll == true {
             setupTimer()
         }
-        guard itemsCount  != 0 ,
+        guard itemsInSection  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
@@ -263,13 +263,13 @@ extension WRCycleScrollView
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     {
-        guard itemsCount  != 0 ,
+        guard itemsInSection  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
         }
         let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        let firstItem = (isEndlessScroll == true) ? (itemsCount / 2) : 0
+        let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
         if curItem >= firstItem {
             isLoadOver = true
         }
@@ -334,7 +334,7 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return itemsCount
+        return itemsInSection
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
