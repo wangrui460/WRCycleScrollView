@@ -118,6 +118,14 @@ class WRCycleScrollView: UIView
         }
         return (isEndlessScroll == true) ? (imgs.count * KEndlessScrollTimes) : imgs.count
     }
+    fileprivate var canChangeCycleCell:Bool {
+        guard itemsInSection  != 0 ,
+            let _ = collectionView,
+            let _ = flowLayout else {
+                return false
+        }
+        return true
+    }
     fileprivate var proxy:Proxy!
     fileprivate var flowLayout:UICollectionViewFlowLayout?
     fileprivate var collectionView:UICollectionView?
@@ -209,34 +217,29 @@ extension WRCycleScrollView
     
     fileprivate func changeToFirstCycleCell(animated:Bool)
     {
-        guard itemsInSection  != 0 ,
-            let collection = collectionView,
-            let _ = flowLayout else {
-                return
+        if canChangeCycleCell == true {
+            let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
+            let indexPath = IndexPath(item: firstItem, section: 0)
+            collectionView!.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
         }
-        let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
-        let indexPath = IndexPath(item: firstItem, section: 0)
-        collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
     }
     
     // 执行这个方法的前提是 isAutoScroll = true
     func changeCycleCell()
     {
-        guard itemsInSection  != 0 ,
-            let collection = collectionView,
-            let layout = flowLayout else {
-                return
-        }
-        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        if curItem == itemsInSection - 1
+        if canChangeCycleCell == true
         {
-            let animated = (isEndlessScroll == true) ? false : true
-            changeToFirstCycleCell(animated: animated)
-        }
-        else
-        {
-            let indexPath = IndexPath(item: curItem + 1, section: 0)
-            collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+            let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
+            if curItem == itemsInSection - 1
+            {
+                let animated = (isEndlessScroll == true) ? false : true
+                changeToFirstCycleCell(animated: animated)
+            }
+            else
+            {
+                let indexPath = IndexPath(item: curItem + 1, section: 0)
+                collectionView!.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+            }
         }
     }
     
@@ -250,32 +253,33 @@ extension WRCycleScrollView
         if isAutoScroll == true {
             setupTimer()
         }
-        guard itemsInSection  != 0 ,
-            let collection = collectionView,
-            let layout = flowLayout else {
-                return
-        }
-        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        let indexOnPageControl = (curItem % imgsCount + 1 == imgsCount) ? 0 : curItem % imgsCount + 1
-        delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
-        pageControl?.currentPage = indexOnPageControl
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     {
-        guard itemsInSection  != 0 ,
-            let collection = collectionView,
-            let layout = flowLayout else {
-                return
+        guard canChangeCycleCell,
+            isLoadOver == false else {
+            return
         }
-        let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
+        
+        let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
         let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
         if curItem >= firstItem {
             isLoadOver = true
         }
-        let indexOnPageControl = curItem % imgsCount
-        delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
-        pageControl?.currentPage = indexOnPageControl
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard canChangeCycleCell else {
+            return
+        }
+        
+        if collectionView!.visibleCells.count == 1 {
+            let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
+            let curIndex = curItem % imgsCount
+//            pageControl?.currentPage = curIndex
+//            delegate?.cycleScrollViewDidScroll?(to: curIndex, cycleScrollView: self)
+        }
     }
 }
 
@@ -339,10 +343,10 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let curItem = indexPath.item
+        let curIndex = indexPath.item % imgsCount
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        cell.imgSource = proxy[curItem % imgsCount]
-        cell.descText = descTextArray?[curItem % imgsCount]
+        cell.imgSource = proxy[curIndex]
+        cell.descText = descTextArray?[curIndex]
         
         if let _ = descTextArray
         {
@@ -352,6 +356,8 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
             cell.descLabelTextAlignment = (descLabelTextAlignment == nil) ? cell.descLabelTextAlignment : descLabelTextAlignment!
             cell.bottomViewBackgroundColor = (bottomViewBackgroundColor == nil) ? cell.bottomViewBackgroundColor : bottomViewBackgroundColor!
         }
+        
+        pageControl?.currentPage = curIndex
         
         return cell
     }
