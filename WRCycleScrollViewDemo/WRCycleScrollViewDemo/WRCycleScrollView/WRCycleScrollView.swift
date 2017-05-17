@@ -9,11 +9,6 @@
 
 import UIKit
 
-enum ImagesType:Int {
-    case SERVER = 0
-    case LOCAL = 1
-}
-
 @objc protocol WRCycleScrollViewDelegate
 {
     /// 点击图片回调
@@ -24,40 +19,57 @@ enum ImagesType:Int {
 
 class WRCycleScrollView: UIView
 {
-    ///////////////////////////////////////////////////////
-    // 对外提供的属性
+//=======================================================
+// MARK: 对外提供的属性
+//=======================================================
     weak var delegate:WRCycleScrollViewDelegate?
     
-    var imgsType:ImagesType = .SERVER     // default SERVER
-    var localImgArray :[String]?
-    var serverImgArray:[String]?
-    var descTextArray :[String]?
-    
-    override var frame: CGRect {
+/// 数据相关
+    var imgsType:ImgType = .SERVER
+    var localImgArray :[String]? {
         didSet {
-            flowLayout?.itemSize = frame.size
-            collectionView?.frame = bounds
+            if let local = localImgArray {
+                proxy = Proxy(type: .LOCAL, array: local)
+                reloadData()
+            }
         }
     }
+    var serverImgArray:[String]? {
+        didSet {
+            if let server = serverImgArray {
+                proxy = Proxy(type: .SERVER, array: server)
+                reloadData()
+            }
+        }
+    }
+    var descTextArray :[String]?
     
+/// WRCycleCell相关
     var descLabelFont: UIFont?
     var descLabelTextColor: UIColor?
     var descLabelHeight: CGFloat?
     var descLabelTextAlignment:NSTextAlignment?
     var bottomViewBackgroundColor: UIColor?
     
-    // 如果自动轮播，表示轮播间隔时间 default = 1.5s
-    var autoScrollInterval: Double = 1.5
-    var isEndlessScroll:Bool = true
+/// 主要功能需求相关
+    override var frame: CGRect {
+        didSet {
+            flowLayout?.itemSize = frame.size
+            collectionView?.frame = bounds
+        }
+    }
     var isAutoScroll:Bool = true {
         didSet {
             timer?.invalidate()
-            timer = nil
             if isAutoScroll == true {
                 setupTimer()
             }
         }
     }
+    var autoScrollInterval: Double = 1.5
+    var isEndlessScroll:Bool = true
+    
+/// pageControl相关
     var showPageControl: Bool = true {
         didSet {
             setupPageControl()
@@ -74,12 +86,15 @@ class WRCycleScrollView: UIView
         }
     }
     
-    ///////////////////////////////////////////////////////
-    // 对外提供的方法
-    func reloadData() {
+//=======================================================
+// MARK: 对外提供的方法
+//=======================================================
+    func reloadData()
+    {
         timer?.invalidate()
         timer = nil
         collectionView?.reloadData()
+        
         setupPageControl()
         changeToFirstCycleCell(animated: false)
         if isAutoScroll == true {
@@ -88,44 +103,34 @@ class WRCycleScrollView: UIView
     }
     
     
-    ///////////////////////////////////////////////////////
-    // 内部属性
+//=======================================================
+// MARK: 内部属性
+//=======================================================
+    fileprivate var imgsCount:Int {
+        guard let imgs = proxy?.imgArray else {
+            return 0
+        }
+        return imgs.count
+    }
+    fileprivate var itemsCount:Int {
+        guard let imgs = proxy?.imgArray else {
+            return 0
+        }
+        return (isEndlessScroll == true) ? imgs.count * 128 : imgs.count
+    }
+    fileprivate var proxy:Proxy!
     fileprivate var flowLayout:UICollectionViewFlowLayout?
     fileprivate var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
-    // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
-    fileprivate var isLoadOver = false
     fileprivate var pageControl:UIPageControl?
     fileprivate var timer:Timer?
-    fileprivate var imgsCount:Int {
-        if imgsType == .LOCAL {
-            guard let local = localImgArray else {
-                return 0
-            }
-            return local.count
-        }
-        else {
-            guard let server = serverImgArray else {
-                return 0
-            }
-            return server.count
-        }
-    }
-    fileprivate var realItemCount:Int {
-        if imgsType == .LOCAL {
-            guard let local = localImgArray else {
-                return 0
-            }
-            return (isEndlessScroll == true) ? local.count * 128 : local.count
-        }
-        else {
-            guard let server = serverImgArray else {
-                return 0
-            }
-            return (isEndlessScroll == true) ? server.count * 128 : server.count
-        }
-    }
+    // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
+    fileprivate var isLoadOver = false
     
+
+//=======================================================
+// MARK: 构造方法
+//=======================================================
     /// 构造方法
     ///
     /// - Parameters:
@@ -133,29 +138,26 @@ class WRCycleScrollView: UIView
     ///   - type:  ImagesType                         default:Server
     ///   - imgs:  localImgArray / serverImgArray     default:nil
     ///   - descs: descTextArray                      default:nil
-    init(frame: CGRect, type:ImagesType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil)
+    init(frame: CGRect, type:ImgType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil)
     {
         super.init(frame: frame)
+        setupCollectionView()
         imgsType = type
         if imgsType == .SERVER {
             if let server = imgs {
-                serverImgArray = server
+                proxy = Proxy(type: .SERVER, array: server)
             }
         }
         else {
             if let local = imgs {
-                localImgArray = local
+                proxy = Proxy(type: .LOCAL, array: local)
             }
         }
         
         if let descTexts = descs {
             descTextArray = descTexts
         }
-        setupCollectionView()
-        setupPageControl()
-        if isAutoScroll == true {
-            setupTimer()
-        }
+        reloadData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -166,7 +168,11 @@ class WRCycleScrollView: UIView
         print("WRCycleScrollView  deinit")
     }
     
-    override func layoutSubviews() {
+//=======================================================
+// MARK: 内部方法（layoutSubviews、willMove）
+//=======================================================
+    override func layoutSubviews()
+    {
         super.layoutSubviews()
         // 解决WRCycleCell自动偏移问题
         collectionView?.contentInset = .zero
@@ -174,16 +180,12 @@ class WRCycleScrollView: UIView
             changeToFirstCycleCell(animated: false)
         }
         if showPageControl == true {
-            let pageW = bounds.width
-            let pageH:CGFloat = 20
-            let pageX = bounds.origin.x
-            let pageY = bounds.height -  pageH
-            self.pageControl?.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
+            setupPageControlFrame()
         }
     }
     
-    // 解决定时器导致的循环引用
-    override func willMove(toSuperview newSuperview: UIView?) {
+    override func willMove(toSuperview newSuperview: UIView?)
+    {   // 解决定时器导致的循环引用
         super.willMove(toSuperview: newSuperview)
         // 展现的时候newSuper不为nil，离开的时候newSuper为nil
         guard let _ = newSuperview else {
@@ -194,8 +196,9 @@ class WRCycleScrollView: UIView
     }
 }
 
-
-// MARK: - 无限轮播相关
+//=======================================================
+// MARK: - 无限轮播相关（定时器、切换图片、scrollView代理方法）
+//=======================================================
 extension WRCycleScrollView
 {
     func setupTimer()
@@ -206,12 +209,12 @@ extension WRCycleScrollView
     
     fileprivate func changeToFirstCycleCell(animated:Bool)
     {
-        guard realItemCount  != 0 ,
+        guard itemsCount  != 0 ,
             let collection = collectionView,
             let _ = flowLayout else {
                 return
         }
-        let firstItem = (isEndlessScroll == true) ? (realItemCount / 2) : 0
+        let firstItem = (isEndlessScroll == true) ? (itemsCount / 2) : 0
         let indexPath = IndexPath(item: firstItem, section: 0)
         collection.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
     }
@@ -219,13 +222,13 @@ extension WRCycleScrollView
     // 执行这个方法的前提是 isAutoScroll = true
     func changeCycleCell()
     {
-        guard realItemCount  != 0 ,
+        guard itemsCount  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
         }
         let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        if curItem == realItemCount - 1
+        if curItem == itemsCount - 1
         {
             let animated = (isEndlessScroll == true) ? false : true
             changeToFirstCycleCell(animated: animated)
@@ -241,11 +244,13 @@ extension WRCycleScrollView
         timer?.invalidate()
         timer = nil
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
         if isAutoScroll == true {
             setupTimer()
         }
-        guard realItemCount  != 0 ,
+        guard itemsCount  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
@@ -255,15 +260,16 @@ extension WRCycleScrollView
         delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
         pageControl?.currentPage = indexOnPageControl
     }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     {
-        guard realItemCount  != 0 ,
+        guard itemsCount  != 0 ,
             let collection = collectionView,
             let layout = flowLayout else {
                 return
         }
         let curItem = Int(collection.contentOffset.x / layout.itemSize.width)
-        let firstItem = (isEndlessScroll == true) ? (realItemCount / 2) : 0
+        let firstItem = (isEndlessScroll == true) ? (itemsCount / 2) : 0
         if curItem >= firstItem {
             isLoadOver = true
         }
@@ -273,8 +279,9 @@ extension WRCycleScrollView
     }
 }
 
-
+//=======================================================
 // MARK: - pageControl页面
+//=======================================================
 extension WRCycleScrollView
 {
     fileprivate func setupPageControl()
@@ -291,10 +298,20 @@ extension WRCycleScrollView
             addSubview(pageControl!)
         }
     }
+    
+    fileprivate func setupPageControlFrame()
+    {
+        let pageW = bounds.width
+        let pageH:CGFloat = 20
+        let pageX = bounds.origin.x
+        let pageY = bounds.height -  pageH
+        self.pageControl?.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
+    }
 }
 
-
+//=======================================================
 // MARK: - WRCycleCell 相关
+//=======================================================
 extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
 {
     fileprivate func setupCollectionView()
@@ -317,21 +334,14 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return realItemCount
+        return itemsCount
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let curItem = indexPath.item
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
-        let imgsCount:Int!
-        if imgsType == .SERVER {
-            imgsCount = serverImgArray?.count
-            cell.serverImgPath = serverImgArray?[curItem % imgsCount]
-        } else {
-            imgsCount = localImgArray?.count
-            cell.localImgPath = localImgArray?[curItem % imgsCount]
-        }
+        cell.imgSource = proxy[curItem % imgsCount]
         cell.descText = descTextArray?[curItem % imgsCount]
         
         if let _ = descTextArray

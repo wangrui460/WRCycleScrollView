@@ -12,18 +12,20 @@ import Kingfisher
  
 class WRCycleCell: UICollectionViewCell
 {
-    ///////////////////////////////////////////////////////
-    // 对外提供的属性
-    var localImgPath:String? {
+//=======================================================
+// MARK: 对外提供的属性
+//=======================================================
+    var imgSource:ImgSource = ImgSource.LOCAL(name: "placeholder")  {
         didSet {
-            imgView.image = UIImage(named: localImgPath!)
+            switch imgSource {
+            case let .SERVER(url):
+                imgView.kf.setImage(with: url)
+            case let .LOCAL(name):
+                imgView.image = UIImage(named: name)
+            }
         }
     }
-    var serverImgPath:String? {
-        didSet {
-            imgView.kf.setImage(with: URL(string: serverImgPath!))
-        }
-    }
+    
     var descText:String? {
         didSet {
             descLabel.isHidden  = (descText == nil) ? true : false
@@ -58,64 +60,41 @@ class WRCycleCell: UICollectionViewCell
             descLabel.textAlignment = descLabelTextAlignment
         }
     }
-    
     var bottomViewBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.5) {
         didSet {
             bottomView.backgroundColor = bottomViewBackgroundColor
         }
     }
  
-    ///////////////////////////////////////////////////////
-    /// 内部属性
-    private var imgView:UIImageView!
-    private var descLabel:UILabel!
-    private var bottomView:UIView!
+//=======================================================
+// MARK: 内部属性
+//=======================================================
+    fileprivate var imgView:UIImageView!
+    fileprivate var descLabel:UILabel!
+    fileprivate var bottomView:UIView!
     
-    override init(frame: CGRect) {
+//=======================================================
+// MARK: 构造方法
+//=======================================================
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         backgroundColor = UIColor.white
         setupImgView()
         setupDescLabel()
         setupBottomView()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     deinit {
         print("WRCycleCell  deinit")
     }
     
-    private func setupImgView()
-    {
-        imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFill
-        imgView.clipsToBounds = true
-        addSubview(imgView)
-    }
     
-    private func setupDescLabel()
-    {
-        descLabel = UILabel()
-        descLabel.text = descText
-        descLabel.numberOfLines = 0
-        descLabel.font = descLabelFont
-        descLabel.textColor = descLabelTextColor
-        descLabel.frame.size.height = descLabelHeight
-        descLabel.textAlignment = descLabelTextAlignment
-        addSubview(descLabel)
-        descLabel.isHidden = true
-    }
-    
-    private func setupBottomView()
-    {
-        bottomView = UIView()
-        bottomView.backgroundColor = bottomViewBackgroundColor
-        addSubview(bottomView)
-        bottomView.isHidden = true
-    }
-    
+//=======================================================
+// MARK: 内部方法（layoutSubviews）
+//=======================================================
     override func layoutSubviews()
     {
         super.layoutSubviews()
@@ -134,5 +113,38 @@ class WRCycleCell: UICollectionViewCell
     }
 }
 
-
+//=======================================================
+// MARK: - 基本控件（图片、描述文字、底部view）
+//=======================================================
+extension WRCycleCell
+{
+    fileprivate func setupImgView()
+    {
+        imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFill
+        imgView.clipsToBounds = true
+        addSubview(imgView)
+    }
+    
+    fileprivate func setupDescLabel()
+    {
+        descLabel = UILabel()
+        descLabel.text = descText
+        descLabel.numberOfLines = 0
+        descLabel.font = descLabelFont
+        descLabel.textColor = descLabelTextColor
+        descLabel.frame.size.height = descLabelHeight
+        descLabel.textAlignment = descLabelTextAlignment
+        addSubview(descLabel)
+        descLabel.isHidden = true
+    }
+    
+    fileprivate func setupBottomView()
+    {
+        bottomView = UIView()
+        bottomView.backgroundColor = bottomViewBackgroundColor
+        addSubview(bottomView)
+        bottomView.isHidden = true
+    }
+}
 
