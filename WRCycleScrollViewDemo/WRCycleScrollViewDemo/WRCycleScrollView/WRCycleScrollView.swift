@@ -69,8 +69,12 @@ class WRCycleScrollView: UIView
             }
         }
     }
+    var isEndlessScroll:Bool = true {
+        didSet {
+            reloadData()
+        }
+    }
     var autoScrollInterval: Double = 1.5
-    var isEndlessScroll:Bool = true
     
 /// pageControl相关
     var showPageControl: Bool = true {
@@ -338,6 +342,7 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
+        print("itemsInSection: \(itemsInSection)")
         return itemsInSection
     }
     
