@@ -122,6 +122,9 @@ class WRCycleScrollView: UIView
         }
         return (isEndlessScroll == true) ? (imgs.count * KEndlessScrollTimes) : imgs.count
     }
+    fileprivate var firstItem:Int {
+        return (isEndlessScroll == true) ? (itemsInSection / 2) : 0
+    }
     fileprivate var canChangeCycleCell:Bool {
         guard itemsInSection  != 0 ,
             let _ = collectionView,
@@ -129,6 +132,11 @@ class WRCycleScrollView: UIView
                 return false
         }
         return true
+    }
+    fileprivate var indexOnPageControl:Int {
+        var curIndex = Int((collectionView!.contentOffset.x + flowLayout!.itemSize.width * 0.5) / flowLayout!.itemSize.width)
+        curIndex = max(0, curIndex)
+        return curIndex % imgsCount
     }
     fileprivate var proxy:Proxy!
     fileprivate var flowLayout:UICollectionViewFlowLayout?
@@ -222,7 +230,6 @@ extension WRCycleScrollView
     fileprivate func changeToFirstCycleCell(animated:Bool)
     {
         if canChangeCycleCell == true {
-            let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
             let indexPath = IndexPath(item: firstItem, section: 0)
             collectionView!.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
         }
@@ -249,7 +256,6 @@ extension WRCycleScrollView
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         timer?.invalidate()
-        timer = nil
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
@@ -259,31 +265,28 @@ extension WRCycleScrollView
         }
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollViewDidEndScrollingAnimation(scrollView)
+    }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView)
     {
-        guard canChangeCycleCell,
-            isLoadOver == false else {
+        guard canChangeCycleCell else {
             return
         }
+        delegate?.cycleScrollViewDidScroll?(to: indexOnPageControl, cycleScrollView: self)
         
-        let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
-        let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
-        if curItem >= firstItem {
+        if indexOnPageControl >= firstItem {
             isLoadOver = true
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
         guard canChangeCycleCell else {
             return
         }
-        
-        if collectionView!.visibleCells.count == 1 {
-            let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
-            let curIndex = curItem % imgsCount
-//            pageControl?.currentPage = curIndex
-//            delegate?.cycleScrollViewDidScroll?(to: curIndex, cycleScrollView: self)
-        }
+        pageControl?.currentPage = indexOnPageControl
     }
 }
 
@@ -342,7 +345,6 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        print("itemsInSection: \(itemsInSection)")
         return itemsInSection
     }
     
@@ -361,16 +363,12 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
             cell.descLabelTextAlignment = (descLabelTextAlignment == nil) ? cell.descLabelTextAlignment : descLabelTextAlignment!
             cell.bottomViewBackgroundColor = (bottomViewBackgroundColor == nil) ? cell.bottomViewBackgroundColor : bottomViewBackgroundColor!
         }
-        
-        pageControl?.currentPage = curIndex
-        
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let indexOnPageControll = indexPath.item % imgsCount
-        delegate?.cycleScrollViewDidSelect?(at: indexOnPageControll, cycleScrollView: self)
+        delegate?.cycleScrollViewDidSelect?(at: indexOnPageControl, cycleScrollView: self)
     }
 }
 
