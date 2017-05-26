@@ -433,6 +433,7 @@
 			baseConfigurationReference = 90A77BF7D3C01D069D4434A6 /* Pods-WRCycleScrollViewDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -448,6 +449,7 @@
 			baseConfigurationReference = 9E50E5441E9DD2F1F27ABDDF /* Pods-WRCycleScrollViewDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 652U6LDTX4;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
