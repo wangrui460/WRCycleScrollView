@@ -8,6 +8,10 @@
 
 import UIKit
 
+/////////////////////////////////////////////////////////////////////////////
+// MARK: 数据 相关
+/////////////////////////////////////////////////////////////////////////////
+
 // 图片资源
 enum ImgSource {
     case SERVER(url:URL)
@@ -53,6 +57,8 @@ struct Proxy
 
 
 /////////////////////////////////////////////////////////////////////////////
+// MARK: pageControl 相关
+/////////////////////////////////////////////////////////////////////////////
 
 private let WRPageControlMargin: CGFloat = 15
 private let WRPageControlPointWidth: CGFloat = 2
@@ -68,12 +74,12 @@ protocol PageControlAlimentProtocol
     // Property in protocol must have explicit { get } or { get set } specifier
     var pageControlAliment: PageControlAliment { get set }
     var pageControlPointSpace: CGFloat { get set }
-    func replacePageControl(pageControl: UIPageControl)
+    func relayoutPageControl(pageControl: UIPageControl)
 }
 
 extension PageControlAlimentProtocol where Self : UIView
 {
-    func replacePageControl(pageControl: UIPageControl)
+    func relayoutPageControl(pageControl: UIPageControl)
     {
         if pageControl.isHidden == false
         {
@@ -96,10 +102,68 @@ extension PageControlAlimentProtocol where Self : UIView
 }
 
 
+/////////////////////////////////////////////////////////////////////////////
+// MARK: 无限轮播 相关
+/////////////////////////////////////////////////////////////////////////////
 
+protocol EndlessScrollProtocol
+{
+    /////////////////////////////////
+    /// 是否自动滚动
+    var isAutoScroll: Bool { get set }
+    /// 自动滚动的时间间隔
+    var autoScrollInterval: Double { get set }
+    /// 用于自动滚动的定时器
+    var timer:Timer? { get set }
+    
+    /////////////////////////////////
+    /// 是否无限轮播
+    var isEndlessScroll: Bool { get set }
+    /// 无线轮播中，一组图片最多轮播多少次
+    var endlessScrollTimes: Int { get }
+    /// 真实的cell数量
+    var itemsInSection: Int { get }
+    
+    /** 设置定时器，用于自动滚动 */
+    func setupTimer()
+    
+    /** 滚动到第一个cell (在无限轮播中就是中间的那个cell) */
+    func changeToFirstCycleCell(animated: Bool, collectionView: UICollectionView)
+}
 
-
-
+extension EndlessScrollProtocol where Self : UIView
+{
+    func changeCycleCell(collectionView: UICollectionView)
+    {
+        guard itemsInSection != 0 else {
+            return
+        }
+        
+        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let curItem = Int(collectionView.contentOffset.x / flowLayout.itemSize.width)
+        if curItem == itemsInSection - 1
+        {
+            let animated = (isEndlessScroll == true) ? false : true
+            changeToFirstCycleCell(animated: animated, collectionView: collectionView)
+        }
+        else
+        {
+            let indexPath = IndexPath(item: curItem + 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
+        }
+    }
+    
+    func changeToFirstCycleCell(animated: Bool, collectionView: UICollectionView)
+    {
+        guard itemsInSection != 0 else {
+            return
+        }
+        
+        let firstItem = (isEndlessScroll == true) ? (itemsInSection / 2) : 0
+        let indexPath = IndexPath(item: firstItem, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
+    }
+}
 
 
 

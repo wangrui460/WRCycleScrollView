@@ -9,7 +9,7 @@
 
 import UIKit
 
-private let KWREndlessScrollTimes = 128
+//private let KWREndlessScrollTimes = 128
 
 @objc protocol WRCycleScrollViewDelegate
 {
@@ -19,7 +19,7 @@ private let KWREndlessScrollTimes = 128
     @objc optional func cycleScrollViewDidScroll(to index:Int, cycleScrollView:WRCycleScrollView)
 }
 
-class WRCycleScrollView: UIView, PageControlAlimentProtocol
+class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtocol
 {
 //=======================================================
 // MARK: 对外提供的属性
@@ -105,7 +105,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
         collectionView?.reloadData()
         
         setupPageControl()
-        changeToFirstCycleCell(animated: false)
+        if canChangeCycleCell == true {
+            changeToFirstCycleCell(animated: false, collectionView: collectionView!)
+        }
         if isAutoScroll == true {
             setupTimer()
         }
@@ -115,14 +117,15 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
 //=======================================================
 // MARK: 内部属性
 //=======================================================
+    let endlessScrollTimes:Int = 128
     fileprivate var imgsCount:Int {
-        return (isEndlessScroll == true) ? (itemsInSection / KWREndlessScrollTimes) : itemsInSection
+        return (isEndlessScroll == true) ? (itemsInSection / endlessScrollTimes) : itemsInSection
     }
-    fileprivate var itemsInSection:Int {
+    var itemsInSection:Int {
         guard let imgs = proxy?.imgArray else {
             return 0
         }
-        return (isEndlessScroll == true) ? (imgs.count * KWREndlessScrollTimes) : imgs.count
+        return (isEndlessScroll == true) ? (imgs.count * endlessScrollTimes) : imgs.count
     }
     fileprivate var firstItem:Int {
         return (isEndlessScroll == true) ? (itemsInSection / 2) : 0
@@ -145,7 +148,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
     fileprivate var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
     fileprivate var pageControl:UIPageControl?
-    fileprivate var timer:Timer?
+    var timer:Timer?
     // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
     fileprivate var isLoadOver = false
     
@@ -199,8 +202,8 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
         super.layoutSubviews()
         // 解决WRCycleCell自动偏移问题
         collectionView?.contentInset = .zero
-        if isLoadOver == false {
-            changeToFirstCycleCell(animated: false)
+        if isLoadOver == false && canChangeCycleCell == true {
+            changeToFirstCycleCell(animated: false, collectionView: collectionView!)
         }
         
         guard let pageControl = self.pageControl else {
@@ -208,7 +211,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
         }
         
         if showPageControl == true {
-            self.replacePageControl(pageControl: pageControl)
+            self.relayoutPageControl(pageControl: pageControl)
         }
     }
     
@@ -225,40 +228,20 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol
 }
 
 //=======================================================
-// MARK: - 无限轮播相关（定时器、切换图片、scrollView代理方法）
+// MARK: - 定时器、自动滚动、scrollView代理方法
 //=======================================================
 extension WRCycleScrollView
 {
     func setupTimer()
     {
-        timer = Timer(timeInterval: autoScrollInterval, target: self, selector: #selector(changeCycleCell), userInfo: nil, repeats: true)
+        timer = Timer(timeInterval: autoScrollInterval, target: self, selector: #selector(autoChangeCycleCell), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
     
-    fileprivate func changeToFirstCycleCell(animated:Bool)
+    func autoChangeCycleCell()
     {
         if canChangeCycleCell == true {
-            let indexPath = IndexPath(item: firstItem, section: 0)
-            collectionView!.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: animated)
-        }
-    }
-    
-    // 执行这个方法的前提是 isAutoScroll = true
-    func changeCycleCell()
-    {
-        if canChangeCycleCell == true
-        {
-            let curItem = Int(collectionView!.contentOffset.x / flowLayout!.itemSize.width)
-            if curItem == itemsInSection - 1
-            {
-                let animated = (isEndlessScroll == true) ? false : true
-                changeToFirstCycleCell(animated: animated)
-            }
-            else
-            {
-                let indexPath = IndexPath(item: curItem + 1, section: 0)
-                collectionView!.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
-            }
+            changeCycleCell(collectionView: collectionView!)
         }
     }
     
