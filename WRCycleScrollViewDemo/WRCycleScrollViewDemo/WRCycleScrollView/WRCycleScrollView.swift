@@ -9,7 +9,7 @@
 
 import UIKit
 
-private let KEndlessScrollTimes = 128
+private let KWREndlessScrollTimes = 128
 
 @objc protocol WRCycleScrollViewDelegate
 {
@@ -19,7 +19,7 @@ private let KEndlessScrollTimes = 128
     @objc optional func cycleScrollViewDidScroll(to index:Int, cycleScrollView:WRCycleScrollView)
 }
 
-class WRCycleScrollView: UIView
+class WRCycleScrollView: UIView, PageControlAlimentProtocol
 {
 //=======================================================
 // MARK: 对外提供的属性
@@ -77,6 +77,8 @@ class WRCycleScrollView: UIView
     var autoScrollInterval: Double = 1.5
     
 /// pageControl相关
+    var pageControlAliment: PageControlAliment = .CenterBottom
+    var pageControlPointSpace: CGFloat = 15
     var showPageControl: Bool = true {
         didSet {
             setupPageControl()
@@ -114,13 +116,13 @@ class WRCycleScrollView: UIView
 // MARK: 内部属性
 //=======================================================
     fileprivate var imgsCount:Int {
-        return (isEndlessScroll == true) ? (itemsInSection / KEndlessScrollTimes) : itemsInSection
+        return (isEndlessScroll == true) ? (itemsInSection / KWREndlessScrollTimes) : itemsInSection
     }
     fileprivate var itemsInSection:Int {
         guard let imgs = proxy?.imgArray else {
             return 0
         }
-        return (isEndlessScroll == true) ? (imgs.count * KEndlessScrollTimes) : imgs.count
+        return (isEndlessScroll == true) ? (imgs.count * KWREndlessScrollTimes) : imgs.count
     }
     fileprivate var firstItem:Int {
         return (isEndlessScroll == true) ? (itemsInSection / 2) : 0
@@ -200,8 +202,13 @@ class WRCycleScrollView: UIView
         if isLoadOver == false {
             changeToFirstCycleCell(animated: false)
         }
+        
+        guard let pageControl = self.pageControl else {
+            return
+        }
+        
         if showPageControl == true {
-            setupPageControlFrame()
+            self.replacePageControl(pageControl: pageControl)
         }
     }
     
@@ -309,15 +316,6 @@ extension WRCycleScrollView
             pageControl?.isUserInteractionEnabled = false
             addSubview(pageControl!)
         }
-    }
-    
-    fileprivate func setupPageControlFrame()
-    {
-        let pageW = bounds.width
-        let pageH:CGFloat = 20
-        let pageX = bounds.origin.x
-        let pageY = bounds.height -  pageH
-        self.pageControl?.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
     }
 }
 
