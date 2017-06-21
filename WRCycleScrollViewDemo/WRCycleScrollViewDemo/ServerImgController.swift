@@ -43,7 +43,6 @@ class ServerImgController: UIViewController
         cycleScrollView?.descTextArray = descs
         cycleScrollView?.frame = CGRect(x: 0, y: 100, width: kScreenWidth, height: 150)
         cycleScrollView?.showPageControl = true
-        cycleScrollView?.reloadData()
     }
 }
 

@@ -111,6 +111,13 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         if isAutoScroll == true {
             setupTimer()
         }
+        guard let pageControl = self.pageControl else {
+            return
+        }
+        
+        if showPageControl == true {
+            self.relayoutPageControl(pageControl: pageControl)
+        }
     }
     
     
@@ -186,7 +193,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        // 支持StoryBoard创建
+        super.init(coder: aDecoder)
+        self.setupCollectionView()
     }
     
     deinit {

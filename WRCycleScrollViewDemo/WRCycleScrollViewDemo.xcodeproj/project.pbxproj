@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A5D14121EFA3B6A00FD1F5F /* StoryBoardController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */; };
+		1A5D14141EFA3FA700FD1F5F /* SBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D14131EFA3FA700FD1F5F /* SBController.swift */; };
 		1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DD0521ECA078000533BE9 /* WRProxy.swift */; };
 		1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B41EC58670000F7206 /* AppDelegate.swift */; };
 		1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B61EC58670000F7206 /* LocalImgController.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryBoardController.storyboard; sourceTree = "<group>"; };
+		1A5D14131EFA3FA700FD1F5F /* SBController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBController.swift; sourceTree = "<group>"; };
 		1A9DD0521ECA078000533BE9 /* WRProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
 		1AC097B11EC58670000F7206 /* WRCycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRCycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC097B41EC58670000F7206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				1AC097D41EC5ADB4000F7206 /* DemoListController.swift */,
 				1AC097B61EC58670000F7206 /* LocalImgController.swift */,
 				1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */,
+				1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */,
+				1A5D14131EFA3FA700FD1F5F /* SBController.swift */,
 				1AC097BB1EC58670000F7206 /* Assets.xcassets */,
 				1AC097BD1EC58670000F7206 /* LaunchScreen.storyboard */,
 				1AC097C01EC58670000F7206 /* Info.plist */,
@@ -230,6 +236,7 @@
 			files = (
 				1AC097BF1EC58670000F7206 /* LaunchScreen.storyboard in Resources */,
 				1AC097BC1EC58670000F7206 /* Assets.xcassets in Resources */,
+				1A5D14121EFA3B6A00FD1F5F /* StoryBoardController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +308,7 @@
 				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,
 				1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */,
+				1A5D14141EFA3FA700FD1F5F /* SBController.swift in Sources */,
 				1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

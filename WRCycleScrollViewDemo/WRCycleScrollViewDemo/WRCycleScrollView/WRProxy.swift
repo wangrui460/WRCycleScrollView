@@ -90,12 +90,13 @@ extension PageControlAlimentProtocol where Self : UIView
             
             switch self.pageControlAliment {
             case .CenterBottom:
-                pageX = CGFloat(center.x) - pageW * 0.5
+                pageX = CGFloat(self.bounds.width / 2) - pageW * 0.5
             case .RightBottom:
                 pageX = bounds.width - pageW - WRPageControlMargin
             case .LeftBottom:
                 pageX = bounds.origin.x + WRPageControlMargin
             }
+            print("centerX:\(center.x) pageW:\(pageW)")
             pageControl.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
         }
     }

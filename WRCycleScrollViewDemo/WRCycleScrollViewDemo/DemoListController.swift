@@ -41,7 +41,7 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
         case 1:
             str = "网络URL";
         case 2:
-            str = "";
+            str = "支持StoryBoard创建";
         case 3:
             str = "";
         case 4:
@@ -66,8 +66,10 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
             navigationController?.pushViewController(LocalImgController(), animated: true)
         case 1:
             navigationController?.pushViewController(ServerImgController(), animated: true)
-//        case 2:
-//            navigationController?.pushViewController(ThirdViewController(), animated: true)
+        case 2:
+            
+            let SBVC:SBController = UIStoryboard.init(name: "StoryBoardController", bundle: nil).instantiateInitialViewController() as! SBController
+            navigationController?.pushViewController(SBVC, animated: true)
 //        case 3:
 //            navigationController?.pushViewController(FourthViewController(), animated: true)
 //        case 4:

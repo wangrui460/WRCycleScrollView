@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="O2p-y3-rpO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Controller-->
+        <scene sceneID="bGg-qm-OxW">
+            <objects>
+                <viewController id="O2p-y3-rpO" customClass="SBController" customModule="WRCycleScrollViewDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0z1-sG-pGT"/>
+                        <viewControllerLayoutGuide type="bottom" id="P6u-gh-kHD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jar-FA-trR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kku-k3-b69" customClass="WRCycleScrollView" customModule="WRCycleScrollViewDemo" customModuleProvider="target">
+                                <rect key="frame" x="40" y="255" width="295" height="157"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kku-k3-b69" secondAttribute="height" multiplier="15:8" id="YcR-QX-o0k"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kku-k3-b69" firstAttribute="leading" secondItem="jar-FA-trR" secondAttribute="leading" constant="40" id="9L2-au-u9J"/>
+                            <constraint firstItem="kku-k3-b69" firstAttribute="centerY" secondItem="jar-FA-trR" secondAttribute="centerY" id="FFo-qS-1Ee"/>
+                            <constraint firstAttribute="trailing" secondItem="kku-k3-b69" secondAttribute="trailing" constant="40" id="Vmj-zo-K8r"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cycleScrollView" destination="kku-k3-b69" id="spK-ai-o5K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Voo-kb-3Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="161"/>
+        </scene>
+    </scenes>
+</document>
