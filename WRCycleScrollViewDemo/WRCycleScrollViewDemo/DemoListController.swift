@@ -28,7 +28,7 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -37,15 +37,17 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
         var str:String? = nil
         switch indexPath.row {
         case 0:
-            str = "本地图片";
+            str = "本地图片"
         case 1:
-            str = "网络URL";
+            str = "网络URL"
         case 2:
-            str = "支持StoryBoard创建";
+            str = "支持StoryBoard创建"
         case 3:
-            str = "不无限轮播";
+            str = "不无限轮播"
         case 4:
-            str = "不显示pageControl";
+            str = "不显示pageControl"
+        case 5:
+            str = "知乎日报效果"
         default:
             str = ""
         }
@@ -74,6 +76,8 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
             navigationController?.pushViewController(NoEndlessController(), animated: true)
         case 4:
             navigationController?.pushViewController(NoPageControlController(), animated: true)
+        case 5:
+            navigationController?.pushViewController(ZhiHuController(), animated: true)
         default:
            break
         }
