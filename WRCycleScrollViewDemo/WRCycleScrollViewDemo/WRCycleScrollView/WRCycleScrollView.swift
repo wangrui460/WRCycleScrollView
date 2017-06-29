@@ -9,8 +9,6 @@
 
 import UIKit
 
-//private let KWREndlessScrollTimes = 128
-
 @objc protocol WRCycleScrollViewDelegate
 {
     /// 点击图片回调

@@ -16,7 +16,7 @@ class DemoListController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.green
-        title = "无限图片轮播"
+        title = "WRCycleScrollView"
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,9 +43,9 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
         case 2:
             str = "支持StoryBoard创建";
         case 3:
-            str = "";
+            str = "不无限轮播";
         case 4:
-            str = "";
+            str = "不显示pageControl";
         default:
             str = ""
         }
@@ -70,10 +70,10 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
             
             let SBVC:SBController = UIStoryboard.init(name: "StoryBoardController", bundle: nil).instantiateInitialViewController() as! SBController
             navigationController?.pushViewController(SBVC, animated: true)
-//        case 3:
-//            navigationController?.pushViewController(FourthViewController(), animated: true)
-//        case 4:
-//            navigationController?.pushViewController(FifthViewController(), animated: true)
+        case 3:
+            navigationController?.pushViewController(NoEndlessController(), animated: true)
+        case 4:
+            navigationController?.pushViewController(NoPageControlController(), animated: true)
         default:
            break
         }

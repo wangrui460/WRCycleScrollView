@@ -15,8 +15,8 @@ class SBController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.white
+        self.title = "StoryBoard创建"
         
         let localImages = ["localImg6","localImg7","localImg8","localImg9","localImg10"]
         let descs = ["韩国防部回应停止部署萨德:遵照最高统帅指导方针",
@@ -25,7 +25,6 @@ class SBController: UIViewController
                      "《琅琊榜2》为何没有胡歌？胡歌：我看过剧本，离开是种保护",
                      "阿米尔汗在印度的影响力，我国的哪位影视明星能与之齐名呢？"]
 
-        cycleScrollView.isEndlessScroll = true
         cycleScrollView.delegate = self
         view.addSubview(cycleScrollView)
         cycleScrollView.localImgArray = localImages

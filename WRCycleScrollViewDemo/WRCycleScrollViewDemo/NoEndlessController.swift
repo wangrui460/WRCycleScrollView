@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ServerImgController: UIViewController
+class NoEndlessController: UIViewController
 {
     var cycleScrollView:WRCycleScrollView?
     
@@ -17,7 +17,7 @@ class ServerImgController: UIViewController
     {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        self.title = "网络URL"
+        self.title = "不无限轮播"
         
         let height = 520 * kScreenWidth / 1080.0
         let frame = CGRect(x: 0, y: 150, width: kScreenWidth, height: height)
@@ -29,10 +29,11 @@ class ServerImgController: UIViewController
         cycleScrollView = WRCycleScrollView(frame: frame, type: .SERVER, imgs: serverImages)
         view.addSubview(cycleScrollView!)
         cycleScrollView?.delegate = self
+        cycleScrollView?.isEndlessScroll = false
     }
 }
 
-extension ServerImgController: WRCycleScrollViewDelegate
+extension NoEndlessController: WRCycleScrollViewDelegate
 {
     /// 点击图片回调
     func cycleScrollViewDidSelect(at index:Int, cycleScrollView:WRCycleScrollView)
