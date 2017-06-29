@@ -1,6 +1,6 @@
 ![image](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/WRCycleScrollView.png)
 
-####[强烈推荐使用：WRNavigationBar  超简单！！！ 一行代码设置状态栏、导航栏按钮、标题、颜色、透明度，移动等](https://github.com/wangrui460/WRNavigationBar)
+#####[强烈推荐使用：WRNavigationBar  超简单！！！ 一行代码设置状态栏、导航栏按钮、标题、颜色、透明度，移动等](https://github.com/wangrui460/WRNavigationBar)
 ------------------------------------------------------------
 
 ## Requirements
@@ -9,19 +9,32 @@
 
 
 ## Demo 
-
+---
+demo列表
 ![demo列表](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/demos.png)
 
+---
+知乎日报
 ![知乎日报](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/知乎日报.gif)
 
+---
+本地图片轮播
 ![本地图片轮播](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/本地图片轮播.gif)
 
+---
+网络图片轮播
 ![网络图片轮播](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/网络图片轮播.gif)
 
+---
+StoryBoard创建
 ![StoryBoard创建](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/StoryBoard创建.gif)
 
+---
+不无限轮播
 ![不无限轮播](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/不无限轮播.gif)
 
+---
+不显示pageControl
 ![不显示pageControl](https://github.com/wangrui460/WRCycleScrollView/raw/master/screenshots/不显示pageControl.gif)
 
 
