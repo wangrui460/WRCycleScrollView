@@ -45,6 +45,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     var descTextArray :[String]?
     
 /// WRCycleCell相关
+    var imageContentModel: UIViewContentMode?
     var descLabelFont: UIFont?
     var descLabelTextColor: UIColor?
     var descLabelHeight: CGFloat?
@@ -346,6 +347,7 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
         
         if let _ = descTextArray
         {
+            cell.imageContentModel = (imageContentModel == nil) ? cell.imageContentModel : imageContentModel!
             cell.descLabelFont = (descLabelFont == nil) ? cell.descLabelFont : descLabelFont!
             cell.descLabelTextColor = (descLabelTextColor == nil) ? cell.descLabelTextColor : descLabelTextColor!
             cell.descLabelHeight = (descLabelHeight == nil) ? cell.descLabelHeight : descLabelHeight!

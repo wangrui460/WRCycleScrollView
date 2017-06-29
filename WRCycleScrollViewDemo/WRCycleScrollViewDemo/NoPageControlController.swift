@@ -19,12 +19,13 @@ class NoPageControlController: UIViewController
         view.backgroundColor = UIColor.white
         self.title = "不显示pageControl"
         
-        let height:CGFloat = 140
+        let height:CGFloat = 110
         let frame = CGRect(x: 0, y: 150, width: kScreenWidth, height: height)
-        let localImages = ["image11","image12","image13","image14","image15"]
+        let localImages = ["image11","image13","image15"]
         cycleScrollView = WRCycleScrollView(frame:frame, type:.LOCAL, imgs:localImages)
         cycleScrollView!.delegate = self
         cycleScrollView?.showPageControl = false
+        cycleScrollView?.imageContentModel = .scaleToFill
         view.addSubview(cycleScrollView!)
     }
 }

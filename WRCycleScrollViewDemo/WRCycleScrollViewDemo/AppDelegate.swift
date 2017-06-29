@@ -38,15 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func setNavBarAppearence()
     {
-        let navBar = UINavigationBar.appearance()
-        // BarButtonItem颜色（例如返回按钮颜色）
-        navBar.tintColor = UIColor.white
-        // 导航栏背景颜色
-        navBar.barTintColor = MainNavBarColor
-        // 标题文字颜色
-        navBar.titleTextAttributes = [NSFontAttributeName:UIFont.systemFont(ofSize: 21), NSForegroundColorAttributeName:UIColor.white]
+        UIColor.defaultStatusBarStyle = .lightContent
+        UIColor.defaultNavBarTintColor = UIColor.white
+        UIColor.defaultNavBarBarTintColor = MainNavBarColor
+        UIColor.defaultNavBarTitleColor = UIColor.white
     }
-
 }
 
 class BaseNavigationController: UINavigationController

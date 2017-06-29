@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A09DC171F0535A40046E853 /* NoEndlessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC161F0535A40046E853 /* NoEndlessController.swift */; };
 		1A09DC191F0536A20046E853 /* NoPageControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC181F0536A20046E853 /* NoPageControlController.swift */; };
+		1A09DC1C1F05396F0046E853 /* WRNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */; };
 		1A5D14121EFA3B6A00FD1F5F /* StoryBoardController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */; };
 		1A5D14141EFA3FA700FD1F5F /* SBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D14131EFA3FA700FD1F5F /* SBController.swift */; };
 		1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DD0521ECA078000533BE9 /* WRProxy.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		1A09DC161F0535A40046E853 /* NoEndlessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoEndlessController.swift; sourceTree = "<group>"; };
 		1A09DC181F0536A20046E853 /* NoPageControlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPageControlController.swift; sourceTree = "<group>"; };
+		1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRNavigationBar.swift; sourceTree = "<group>"; };
 		1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryBoardController.storyboard; sourceTree = "<group>"; };
 		1A5D14131EFA3FA700FD1F5F /* SBController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBController.swift; sourceTree = "<group>"; };
 		1A9DD0521ECA078000533BE9 /* WRProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A09DC1A1F05396F0046E853 /* WRNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */,
+			);
+			path = WRNavigationBar;
+			sourceTree = "<group>";
+		};
 		1AC097A81EC58670000F7206 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +110,7 @@
 		1AC097B31EC58670000F7206 /* WRCycleScrollViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1A09DC1A1F05396F0046E853 /* WRNavigationBar */,
 				1AC097B41EC58670000F7206 /* AppDelegate.swift */,
 				1AC097D81EC5B929000F7206 /* WRCycleScrollView */,
 				1AC097D41EC5ADB4000F7206 /* DemoListController.swift */,
@@ -310,6 +321,7 @@
 			files = (
 				1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */,
 				1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */,
+				1A09DC1C1F05396F0046E853 /* WRNavigationBar.swift in Sources */,
 				1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */,
 				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,

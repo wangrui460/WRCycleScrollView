@@ -96,7 +96,6 @@ extension PageControlAlimentProtocol where Self : UIView
             case .LeftBottom:
                 pageX = bounds.origin.x + WRPageControlMargin
             }
-            print("centerX:\(center.x) pageW:\(pageW)")
             pageControl.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
         }
     }

@@ -40,6 +40,12 @@ class WRCycleCell: UICollectionViewCell
         }
     }
     
+    var imageContentModel:UIViewContentMode = .scaleAspectFill {
+        didSet {
+            imgView.contentMode = imageContentModel
+        }
+    }
+    
     var descLabelFont: UIFont = UIFont(name: "Helvetica-Bold", size: 18)! {
         didSet {
             descLabel.font = descLabelFont
@@ -121,7 +127,7 @@ extension WRCycleCell
     fileprivate func setupImgView()
     {
         imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFill
+        imgView.contentMode = imageContentModel
         imgView.clipsToBounds = true
         addSubview(imgView)
     }
