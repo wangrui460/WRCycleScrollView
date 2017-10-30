@@ -287,6 +287,10 @@ extension WRCycleScrollView
         }
         pageControl?.currentPage = indexOnPageControl
     }
+    
+    override func didMoveToWindow() {
+        flowLayout?.itemSize = frame.size
+    }
 }
 
 //=======================================================
