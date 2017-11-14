@@ -74,18 +74,19 @@ protocol PageControlAlimentProtocol
     // Property in protocol must have explicit { get } or { get set } specifier
     var pageControlAliment: PageControlAliment { get set }
     var pageControlPointSpace: CGFloat { get set }
-    func relayoutPageControl(pageControl: UIPageControl)
+    func relayoutPageControl(pageControl: WRPageControl)
+    func relayoutPageControl(pageControl: WRPageControl, outerFrame:CGRect)
 }
 
 extension PageControlAlimentProtocol where Self : UIView
-{
-    func relayoutPageControl(pageControl: UIPageControl)
+{   // TODO: 等待优化
+    func relayoutPageControl(pageControl: WRPageControl)
     {
         if pageControl.isHidden == false
         {
-            let pageH:CGFloat = 20
-            let pageY = bounds.height -  pageH
-            let pageW = CGFloat(pageControl.numberOfPages - 1) * (self.pageControlPointSpace + WRPageControlPointWidth) + WRPageControlPointWidth
+            let pageH:CGFloat = 20//pageControl.pageSize.height
+            let pageY = bounds.height - pageH
+            let pageW = pageControl.pageSize.width
             var pageX:CGFloat = 0
             
             switch self.pageControlAliment {
@@ -97,6 +98,12 @@ extension PageControlAlimentProtocol where Self : UIView
                 pageX = bounds.origin.x + WRPageControlMargin
             }
             pageControl.frame = CGRect(x:pageX, y:pageY, width:pageW, height:pageH)
+        }
+    }
+    func relayoutPageControl(pageControl: WRPageControl, outerFrame:CGRect)
+    {
+        if pageControl.isHidden == false {
+            pageControl.frame = CGRect(x:outerFrame.origin.x, y:outerFrame.origin.y, width:pageControl.pageSize.width, height:pageControl.pageSize.height)
         }
     }
 }

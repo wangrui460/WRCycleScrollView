@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 @objc protocol WRCycleScrollViewDelegate
 {
     /// 点击图片回调
@@ -19,10 +20,17 @@ import UIKit
 
 class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtocol
 {
+    
 //=======================================================
 // MARK: 对外提供的属性
 //=======================================================
     weak var delegate:WRCycleScrollViewDelegate?
+    
+    var outerPageControlFrame:CGRect? {
+        didSet {
+            setupPageControl()
+        }
+    }
     
 /// 数据相关
     var imgsType:ImgType = .SERVER
@@ -77,7 +85,21 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     
 /// pageControl相关
     var pageControlAliment: PageControlAliment = .CenterBottom
-    var pageControlPointSpace: CGFloat = 15
+    var defaultPageDotImage: UIImage? {
+        didSet {
+            setupPageControl()
+        }
+    }
+    var currentPageDotImage: UIImage? {
+        didSet {
+            setupPageControl()
+        }
+    }
+    var pageControlPointSpace: CGFloat = 15 {
+        didSet {
+            setupPageControl()
+        }
+    }
     var showPageControl: Bool = true {
         didSet {
             setupPageControl()
@@ -115,7 +137,11 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         }
         
         if showPageControl == true {
-            self.relayoutPageControl(pageControl: pageControl)
+            if let outFrame = outerPageControlFrame {
+                self.relayoutPageControl(pageControl: pageControl, outerFrame: outFrame)
+            } else {
+                self.relayoutPageControl(pageControl: pageControl)
+            }
         }
     }
     
@@ -153,7 +179,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     fileprivate var flowLayout:UICollectionViewFlowLayout?
     fileprivate var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
-    fileprivate var pageControl:UIPageControl?
+    fileprivate var pageControl:WRPageControl?
     var timer:Timer?
     // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
     fileprivate var isLoadOver = false
@@ -169,10 +195,12 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     ///   - type:  ImagesType                         default:Server
     ///   - imgs:  localImgArray / serverImgArray     default:nil
     ///   - descs: descTextArray                      default:nil
-    init(frame: CGRect, type:ImgType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil)
+    init(frame: CGRect, type:ImgType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil, defaultDotImage:UIImage? = nil, currentDotImage:UIImage? = nil)
     {
         super.init(frame: frame)
         setupCollectionView()
+        defaultPageDotImage = defaultDotImage
+        currentPageDotImage = currentDotImage
         imgsType = type
         if imgsType == .SERVER {
             if let server = imgs {
@@ -219,7 +247,11 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         }
         
         if showPageControl == true {
-            self.relayoutPageControl(pageControl: pageControl)
+            if let outFrame = outerPageControlFrame {
+                self.relayoutPageControl(pageControl: pageControl, outerFrame: outFrame)
+            } else {
+                self.relayoutPageControl(pageControl: pageControl)
+            }
         }
     }
     
@@ -299,13 +331,19 @@ extension WRCycleScrollView
         pageControl?.removeFromSuperview()
         if showPageControl == true
         {
-            pageControl = UIPageControl()
+            pageControl = WRPageControl(frame: CGRect.zero, currentImage: currentPageDotImage, defaultImage: defaultPageDotImage)
             pageControl?.numberOfPages = imgsCount
             pageControl?.hidesForSinglePage = true
             pageControl?.currentPageIndicatorTintColor = self.currentDotColor
             pageControl?.pageIndicatorTintColor = self.otherDotColor
             pageControl?.isUserInteractionEnabled = false
-            addSubview(pageControl!)
+            pageControl?.pointSpace = pageControlPointSpace
+            
+            if let _ = outerPageControlFrame {
+                superview?.addSubview(pageControl!)
+            } else {
+                addSubview(pageControl!)
+            }
         }
     }
 }

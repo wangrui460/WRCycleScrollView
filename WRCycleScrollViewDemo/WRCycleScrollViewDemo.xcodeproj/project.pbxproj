@@ -23,6 +23,9 @@
 		1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */; };
 		1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */; };
 		1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */; };
+		3425F3501FBAC6AF000666C8 /* WRPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */; };
+		3425F3521FBAE049000666C8 /* CustomDotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F3511FBAE049000666C8 /* CustomDotController.swift */; };
+		3425F3541FBAECCE000666C8 /* StandaloneDotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F3531FBAECCE000666C8 /* StandaloneDotController.swift */; };
 		FF78CC64A5D22B4B3B0104A1 /* Pods_WRCycleScrollViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,9 @@
 		1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerImgController.swift; sourceTree = "<group>"; };
 		1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
 		1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
+		3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRPageControl.swift; sourceTree = "<group>"; };
+		3425F3511FBAE049000666C8 /* CustomDotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDotController.swift; sourceTree = "<group>"; };
+		3425F3531FBAECCE000666C8 /* StandaloneDotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneDotController.swift; sourceTree = "<group>"; };
 		78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WRCycleScrollViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A77BF7D3C01D069D4434A6 /* Pods-WRCycleScrollViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WRCycleScrollViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		9E50E5441E9DD2F1F27ABDDF /* Pods-WRCycleScrollViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WRCycleScrollViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +129,8 @@
 				1A09DC161F0535A40046E853 /* NoEndlessController.swift */,
 				1A09DC181F0536A20046E853 /* NoPageControlController.swift */,
 				1A09DC1D1F05431B0046E853 /* ZhiHuController.swift */,
+				3425F3511FBAE049000666C8 /* CustomDotController.swift */,
+				3425F3531FBAECCE000666C8 /* StandaloneDotController.swift */,
 				1AC097BB1EC58670000F7206 /* Assets.xcassets */,
 				1AC097BD1EC58670000F7206 /* LaunchScreen.storyboard */,
 				1AC097C01EC58670000F7206 /* Info.plist */,
@@ -145,6 +153,7 @@
 				1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */,
 				1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */,
 				1A9DD0521ECA078000533BE9 /* WRProxy.swift */,
+				3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */,
 			);
 			path = WRCycleScrollView;
 			sourceTree = "<group>";
@@ -322,8 +331,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3425F3501FBAC6AF000666C8 /* WRPageControl.swift in Sources */,
 				1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */,
+				3425F3521FBAE049000666C8 /* CustomDotController.swift in Sources */,
 				1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */,
+				3425F3541FBAECCE000666C8 /* StandaloneDotController.swift in Sources */,
 				1A09DC1C1F05396F0046E853 /* WRNavigationBar.swift in Sources */,
 				1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */,
 				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,

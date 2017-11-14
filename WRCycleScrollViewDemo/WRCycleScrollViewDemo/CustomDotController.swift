@@ -1,15 +1,14 @@
 //
-//  ServerImgController.swift
+//  CustomDotController.swift
 //  WRCycleScrollViewDemo
 //
-//  Created by wangrui on 2017/5/12.
+//  Created by itwangrui on 2017/11/14.
 //  Copyright © 2017年 wangrui. All rights reserved.
 //
-//  Github地址：https://github.com/wangrui460/WRCycleScrollView
 
 import UIKit
 
-class ServerImgController: UIViewController
+class CustomDotController: UIViewController
 {
     var cycleScrollView:WRCycleScrollView?
     
@@ -27,12 +26,14 @@ class ServerImgController: UIViewController
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007388249407.png",
                             "http://p.lrlz.com/data/upload/mobile/special/s303/s303_05442007470310935.png"]
         cycleScrollView = WRCycleScrollView(frame: frame, type: .SERVER, imgs: serverImages)
+        cycleScrollView?.defaultPageDotImage = UIImage(named: "defaultDot")
+        cycleScrollView?.currentPageDotImage = UIImage(named: "currentDot")
         view.addSubview(cycleScrollView!)
         cycleScrollView?.delegate = self
     }
 }
 
-extension ServerImgController: WRCycleScrollViewDelegate
+extension CustomDotController: WRCycleScrollViewDelegate
 {
     /// 点击图片事件
     func cycleScrollViewDidSelect(at index:Int, cycleScrollView:WRCycleScrollView)
@@ -45,4 +46,3 @@ extension ServerImgController: WRCycleScrollViewDelegate
         print("滚动到了第\(index+1)个图片")
     }
 }
-

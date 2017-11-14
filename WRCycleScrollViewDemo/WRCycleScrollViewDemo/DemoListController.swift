@@ -28,7 +28,7 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 6
+        return 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -48,6 +48,10 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
             str = "不显示pageControl"
         case 5:
             str = "知乎日报效果"
+        case 6:
+            str = "自定义dot"
+        case 7:
+            str = "独立出dot"
         default:
             str = ""
         }
@@ -78,6 +82,10 @@ extension DemoListController: UITableViewDelegate, UITableViewDataSource
             navigationController?.pushViewController(NoPageControlController(), animated: true)
         case 5:
             navigationController?.pushViewController(ZhiHuController(), animated: true)
+        case 6:
+            navigationController?.pushViewController(CustomDotController(), animated: true)
+        case 7:
+            navigationController?.pushViewController(StandaloneDotController(), animated: true)
         default:
            break
         }
