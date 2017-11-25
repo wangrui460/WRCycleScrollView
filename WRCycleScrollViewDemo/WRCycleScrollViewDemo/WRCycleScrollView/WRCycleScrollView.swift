@@ -21,9 +21,9 @@ import UIKit
 class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtocol
 {
     
-//=======================================================
-// MARK: 对外提供的属性
-//=======================================================
+    //=======================================================
+    // MARK: 对外提供的属性
+    //=======================================================
     weak var delegate:WRCycleScrollViewDelegate?
     
     var outerPageControlFrame:CGRect? {
@@ -32,7 +32,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         }
     }
     
-/// 数据相关
+    /// 数据相关
     var imgsType:ImgType = .SERVER
     var localImgArray :[String]? {
         didSet {
@@ -51,8 +51,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         }
     }
     var descTextArray :[String]?
+    var placeholderImage: UIImage?
     
-/// WRCycleCell相关
+    /// WRCycleCell相关
     var imageContentModel: UIViewContentMode?
     var descLabelFont: UIFont?
     var descLabelTextColor: UIColor?
@@ -60,7 +61,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     var descLabelTextAlignment:NSTextAlignment?
     var bottomViewBackgroundColor: UIColor?
     
-/// 主要功能需求相关
+    /// 主要功能需求相关
     override var frame: CGRect {
         didSet {
             flowLayout?.itemSize = frame.size
@@ -83,7 +84,7 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     }
     var autoScrollInterval: Double = 1.5
     
-/// pageControl相关
+    /// pageControl相关
     var pageControlAliment: PageControlAliment = .CenterBottom
     var defaultPageDotImage: UIImage? {
         didSet {
@@ -116,9 +117,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         }
     }
     
-//=======================================================
-// MARK: 对外提供的方法
-//=======================================================
+    //=======================================================
+    // MARK: 对外提供的方法
+    //=======================================================
     func reloadData()
     {
         timer?.invalidate()
@@ -146,9 +147,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     }
     
     
-//=======================================================
-// MARK: 内部属性
-//=======================================================
+    //=======================================================
+    // MARK: 内部属性
+    //=======================================================
     let endlessScrollTimes:Int = 128
     fileprivate var imgsCount:Int {
         return (isEndlessScroll == true) ? (itemsInSection / endlessScrollTimes) : itemsInSection
@@ -184,10 +185,10 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     // 标识子控件是否布局完成，布局完成后在layoutSubviews方法中就不执行 changeToFirstCycleCell 方法
     fileprivate var isLoadOver = false
     
-
-//=======================================================
-// MARK: 构造方法
-//=======================================================
+    
+    //=======================================================
+    // MARK: 构造方法
+    //=======================================================
     /// 构造方法
     ///
     /// - Parameters:
@@ -195,12 +196,13 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     ///   - type:  ImagesType                         default:Server
     ///   - imgs:  localImgArray / serverImgArray     default:nil
     ///   - descs: descTextArray                      default:nil
-    init(frame: CGRect, type:ImgType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil, defaultDotImage:UIImage? = nil, currentDotImage:UIImage? = nil)
+    init(frame: CGRect, type:ImgType = .SERVER, imgs:[String]? = nil, descs:[String]? = nil, defaultDotImage:UIImage? = nil, currentDotImage:UIImage? = nil, placeholderImage:UIImage? = nil)
     {
         super.init(frame: frame)
         setupCollectionView()
         defaultPageDotImage = defaultDotImage
         currentPageDotImage = currentDotImage
+        self.placeholderImage = placeholderImage
         imgsType = type
         if imgsType == .SERVER {
             if let server = imgs {
@@ -230,9 +232,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
         print("WRCycleScrollView  deinit")
     }
     
-//=======================================================
-// MARK: 内部方法（layoutSubviews、willMove）
-//=======================================================
+    //=======================================================
+    // MARK: 内部方法（layoutSubviews、willMove）
+    //=======================================================
     override func layoutSubviews()
     {
         super.layoutSubviews()
@@ -380,6 +382,7 @@ extension WRCycleScrollView: UICollectionViewDelegate,UICollectionViewDataSource
     {
         let curIndex = indexPath.item % imgsCount
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID, for: indexPath) as! WRCycleCell
+        cell.placeholderImage = placeholderImage
         cell.imgSource = proxy[curIndex]
         cell.descText = descTextArray?[curIndex]
         

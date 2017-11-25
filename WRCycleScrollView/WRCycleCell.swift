@@ -9,12 +9,12 @@
 
 import UIKit
 import Kingfisher
- 
+
 class WRCycleCell: UICollectionViewCell
 {
-//=======================================================
-// MARK: 对外提供的属性
-//=======================================================
+    //=======================================================
+    // MARK: 对外提供的属性
+    //=======================================================
     var imgSource:ImgSource = ImgSource.LOCAL(name: "placeholder")  {
         didSet {
             switch imgSource {
@@ -25,6 +25,8 @@ class WRCycleCell: UICollectionViewCell
             }
         }
     }
+    
+    var placeholderImage: UIImage?
     
     var descText:String? {
         didSet {
@@ -71,17 +73,17 @@ class WRCycleCell: UICollectionViewCell
             bottomView.backgroundColor = bottomViewBackgroundColor
         }
     }
- 
-//=======================================================
-// MARK: 内部属性
-//=======================================================
+    
+    //=======================================================
+    // MARK: 内部属性
+    //=======================================================
     fileprivate var imgView:UIImageView!
     fileprivate var descLabel:UILabel!
     fileprivate var bottomView:UIView!
     
-//=======================================================
-// MARK: 构造方法
-//=======================================================
+    //=======================================================
+    // MARK: 构造方法
+    //=======================================================
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -98,9 +100,9 @@ class WRCycleCell: UICollectionViewCell
     }
     
     
-//=======================================================
-// MARK: 内部方法（layoutSubviews）
-//=======================================================
+    //=======================================================
+    // MARK: 内部方法（layoutSubviews）
+    //=======================================================
     override func layoutSubviews()
     {
         super.layoutSubviews()
