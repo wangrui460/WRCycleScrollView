@@ -238,6 +238,9 @@ class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtoc
     override func layoutSubviews()
     {
         super.layoutSubviews()
+        /// FIX: 2018-7-31 或许可以解决storyboard创建时遇到的尺寸问题
+        self.sizeToFit()
+        
         // 解决WRCycleCell自动偏移问题
         collectionView?.contentInset = .zero
         if isLoadOver == false && canChangeCycleCell == true {
