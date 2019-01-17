@@ -18,6 +18,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'WRCycleScrollView/Classes/**/*'
-
-  s.dependency 'Kingfisher', '>= 4.10.0'
 end

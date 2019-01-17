@@ -178,7 +178,7 @@ public class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrol
     }
     fileprivate var proxy:Proxy!
     fileprivate var flowLayout:UICollectionViewFlowLayout?
-    fileprivate var collectionView:UICollectionView?
+    public var collectionView:UICollectionView?
     fileprivate let CellID = "WRCycleCell"
     fileprivate var pageControl:WRPageControl?
     public var timer:Timer?

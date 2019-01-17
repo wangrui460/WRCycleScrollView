@@ -77,9 +77,9 @@ public class WRCycleCell: UICollectionViewCell
     //=======================================================
     // MARK: 内部属性
     //=======================================================
-    fileprivate var imgView:UIImageView!
-    fileprivate var descLabel:UILabel!
-    fileprivate var bottomView:UIView!
+    public var imgView:UIImageView!
+    public var descLabel:UILabel!
+    public var bottomView:UIView!
     
     //=======================================================
     // MARK: 构造方法
