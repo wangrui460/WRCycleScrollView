@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'WRCycleScrollView_Example' do
+  pod 'WRCycleScrollView', :path => '../'
+  pod 'WRNavigationBar_swift', :git => 'https://github.com/EFRenovation/WRNavigationBar_swift.git'
+
+  target 'WRCycleScrollView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

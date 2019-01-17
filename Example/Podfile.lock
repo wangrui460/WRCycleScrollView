@@ -1,0 +1,33 @@
+PODS:
+  - Kingfisher (4.10.1)
+  - WRCycleScrollView (0.1.0):
+    - Kingfisher (>= 4.10.0)
+  - WRNavigationBar_swift (0.1.0)
+
+DEPENDENCIES:
+  - WRCycleScrollView (from `../`)
+  - WRNavigationBar_swift (from `https://github.com/EFRenovation/WRNavigationBar_swift.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+
+EXTERNAL SOURCES:
+  WRCycleScrollView:
+    :path: "../"
+  WRNavigationBar_swift:
+    :git: https://github.com/EFRenovation/WRNavigationBar_swift.git
+
+CHECKOUT OPTIONS:
+  WRNavigationBar_swift:
+    :commit: a0527391cb2ef39b782ccb7dc392c283669f8b83
+    :git: https://github.com/EFRenovation/WRNavigationBar_swift.git
+
+SPEC CHECKSUMS:
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  WRCycleScrollView: d3d873ee075ca797056721d0286df967994df7f2
+  WRNavigationBar_swift: b49ca280deb24616af40abae09d8ec593e75ac64
+
+PODFILE CHECKSUM: 82eeaaada13c975b714571f2566f79f73d39841f
+
+COCOAPODS: 1.5.3

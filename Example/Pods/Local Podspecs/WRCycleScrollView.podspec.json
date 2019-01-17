@@ -1,0 +1,28 @@
+{
+  "name": "WRCycleScrollView",
+  "version": "0.1.0",
+  "summary": "A cycle scroll view in Swift.",
+  "description": "'WRCycleScrollView, the only cycle scroll view you need in iOS.'",
+  "homepage": "https://github.com/wangrui460/WRCycleScrollView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wangrui460": "wangruidev@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/wangrui460/WRCycleScrollView.git",
+    "tag": "0.1.0"
+  },
+  "swift_version": "4.2",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "WRCycleScrollView/Classes/**/*",
+  "dependencies": {
+    "Kingfisher": [
+      ">= 4.10.0"
+    ]
+  }
+}
