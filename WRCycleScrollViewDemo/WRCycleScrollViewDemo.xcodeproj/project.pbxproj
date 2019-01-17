@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C6C44F21F023DA0001D33E /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C44B21F023DA0001D33E /* WRCycleScrollView.swift */; };
+		12C6C45021F023DA0001D33E /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C44C21F023DA0001D33E /* WRProxy.swift */; };
+		12C6C45121F023DA0001D33E /* WRPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C44D21F023DA0001D33E /* WRPageControl.swift */; };
+		12C6C45221F023DA0001D33E /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C44E21F023DA0001D33E /* WRCycleCell.swift */; };
 		1A09DC171F0535A40046E853 /* NoEndlessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC161F0535A40046E853 /* NoEndlessController.swift */; };
 		1A09DC191F0536A20046E853 /* NoPageControlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC181F0536A20046E853 /* NoPageControlController.swift */; };
-		1A09DC1C1F05396F0046E853 /* WRNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */; };
 		1A09DC1E1F05431B0046E853 /* ZhiHuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09DC1D1F05431B0046E853 /* ZhiHuController.swift */; };
 		1A5D14121EFA3B6A00FD1F5F /* StoryBoardController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */; };
 		1A5D14141EFA3FA700FD1F5F /* SBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D14131EFA3FA700FD1F5F /* SBController.swift */; };
-		1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9DD0521ECA078000533BE9 /* WRProxy.swift */; };
 		1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B41EC58670000F7206 /* AppDelegate.swift */; };
 		1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097B61EC58670000F7206 /* LocalImgController.swift */; };
 		1AC097BC1EC58670000F7206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC097BB1EC58670000F7206 /* Assets.xcassets */; };
@@ -21,9 +23,6 @@
 		1AC097CA1EC58670000F7206 /* WRCycleScrollViewDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097C91EC58670000F7206 /* WRCycleScrollViewDemoTests.swift */; };
 		1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D41EC5ADB4000F7206 /* DemoListController.swift */; };
 		1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */; };
-		1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */; };
-		1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */; };
-		3425F3501FBAC6AF000666C8 /* WRPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */; };
 		3425F3521FBAE049000666C8 /* CustomDotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F3511FBAE049000666C8 /* CustomDotController.swift */; };
 		3425F3541FBAECCE000666C8 /* StandaloneDotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3425F3531FBAECCE000666C8 /* StandaloneDotController.swift */; };
 		FF78CC64A5D22B4B3B0104A1 /* Pods_WRCycleScrollViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */; };
@@ -40,13 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12C6C44B21F023DA0001D33E /* WRCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WRCycleScrollView.swift; path = ../../../WRCycleScrollView/WRCycleScrollView.swift; sourceTree = "<group>"; };
+		12C6C44C21F023DA0001D33E /* WRProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WRProxy.swift; path = ../../../WRCycleScrollView/WRProxy.swift; sourceTree = "<group>"; };
+		12C6C44D21F023DA0001D33E /* WRPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WRPageControl.swift; path = ../../../WRCycleScrollView/WRPageControl.swift; sourceTree = "<group>"; };
+		12C6C44E21F023DA0001D33E /* WRCycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WRCycleCell.swift; path = ../../../WRCycleScrollView/WRCycleCell.swift; sourceTree = "<group>"; };
 		1A09DC161F0535A40046E853 /* NoEndlessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoEndlessController.swift; sourceTree = "<group>"; };
 		1A09DC181F0536A20046E853 /* NoPageControlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPageControlController.swift; sourceTree = "<group>"; };
-		1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRNavigationBar.swift; sourceTree = "<group>"; };
 		1A09DC1D1F05431B0046E853 /* ZhiHuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZhiHuController.swift; sourceTree = "<group>"; };
 		1A5D14111EFA3B6A00FD1F5F /* StoryBoardController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryBoardController.storyboard; sourceTree = "<group>"; };
 		1A5D14131EFA3FA700FD1F5F /* SBController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBController.swift; sourceTree = "<group>"; };
-		1A9DD0521ECA078000533BE9 /* WRProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRProxy.swift; sourceTree = "<group>"; };
 		1AC097B11EC58670000F7206 /* WRCycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WRCycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC097B41EC58670000F7206 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AC097B61EC58670000F7206 /* LocalImgController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImgController.swift; sourceTree = "<group>"; };
@@ -58,9 +59,6 @@
 		1AC097CB1EC58670000F7206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC097D41EC5ADB4000F7206 /* DemoListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoListController.swift; sourceTree = "<group>"; };
 		1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerImgController.swift; sourceTree = "<group>"; };
-		1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleCell.swift; sourceTree = "<group>"; };
-		1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WRCycleScrollView.swift; sourceTree = "<group>"; };
-		3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRPageControl.swift; sourceTree = "<group>"; };
 		3425F3511FBAE049000666C8 /* CustomDotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDotController.swift; sourceTree = "<group>"; };
 		3425F3531FBAECCE000666C8 /* StandaloneDotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneDotController.swift; sourceTree = "<group>"; };
 		78F99DB515338C31DDC6F59E /* Pods_WRCycleScrollViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WRCycleScrollViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,12 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A09DC1A1F05396F0046E853 /* WRNavigationBar */ = {
+		12C6C44A21F023C80001D33E /* WRCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				1A09DC1B1F05396F0046E853 /* WRNavigationBar.swift */,
+				12C6C44E21F023DA0001D33E /* WRCycleCell.swift */,
+				12C6C44B21F023DA0001D33E /* WRCycleScrollView.swift */,
+				12C6C44D21F023DA0001D33E /* WRPageControl.swift */,
+				12C6C44C21F023DA0001D33E /* WRProxy.swift */,
 			);
-			path = WRNavigationBar;
+			path = WRCycleScrollView;
 			sourceTree = "<group>";
 		};
 		1AC097A81EC58670000F7206 = {
@@ -118,9 +119,8 @@
 		1AC097B31EC58670000F7206 /* WRCycleScrollViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				1A09DC1A1F05396F0046E853 /* WRNavigationBar */,
+				12C6C44A21F023C80001D33E /* WRCycleScrollView */,
 				1AC097B41EC58670000F7206 /* AppDelegate.swift */,
-				1AC097D81EC5B929000F7206 /* WRCycleScrollView */,
 				1AC097D41EC5ADB4000F7206 /* DemoListController.swift */,
 				1AC097B61EC58670000F7206 /* LocalImgController.swift */,
 				1AC097D61EC5B2E9000F7206 /* ServerImgController.swift */,
@@ -145,17 +145,6 @@
 				1AC097CB1EC58670000F7206 /* Info.plist */,
 			);
 			path = WRCycleScrollViewDemoTests;
-			sourceTree = "<group>";
-		};
-		1AC097D81EC5B929000F7206 /* WRCycleScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				1AC097D91EC5BAB8000F7206 /* WRCycleCell.swift */,
-				1AC097DB1EC5BAF1000F7206 /* WRCycleScrollView.swift */,
-				1A9DD0521ECA078000533BE9 /* WRProxy.swift */,
-				3425F34F1FBAC6AF000666C8 /* WRPageControl.swift */,
-			);
-			path = WRCycleScrollView;
 			sourceTree = "<group>";
 		};
 		236F58F6AC6ABB96E39A2765 /* Frameworks */ = {
@@ -187,7 +176,6 @@
 				1AC097AE1EC58670000F7206 /* Frameworks */,
 				1AC097AF1EC58670000F7206 /* Resources */,
 				3BAA828292BFB6653889EF22 /* [CP] Embed Pods Frameworks */,
-				FC3127A1E3F7ABA9E1E56FD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,12 +216,12 @@
 				TargetAttributes = {
 					1AC097B01EC58670000F7206 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 652U6LDTX4;
+						DevelopmentTeam = P3X2725LYY;
 						ProvisioningStyle = Automatic;
 					};
 					1AC097C41EC58670000F7206 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 652U6LDTX4;
+						DevelopmentTeam = P3X2725LYY;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1AC097B01EC58670000F7206;
 					};
@@ -285,9 +273,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/WRNavigationBar_swift/WRNavigationBar_swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WRNavigationBar_swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -300,28 +293,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WRCycleScrollViewDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FC3127A1E3F7ABA9E1E56FD3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WRCycleScrollViewDemo/Pods-WRCycleScrollViewDemo-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -331,21 +312,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3425F3501FBAC6AF000666C8 /* WRPageControl.swift in Sources */,
 				1AC097D71EC5B2E9000F7206 /* ServerImgController.swift in Sources */,
 				3425F3521FBAE049000666C8 /* CustomDotController.swift in Sources */,
 				1AC097D51EC5ADB4000F7206 /* DemoListController.swift in Sources */,
 				3425F3541FBAECCE000666C8 /* StandaloneDotController.swift in Sources */,
-				1A09DC1C1F05396F0046E853 /* WRNavigationBar.swift in Sources */,
+				12C6C45221F023DA0001D33E /* WRCycleCell.swift in Sources */,
 				1AC097B71EC58670000F7206 /* LocalImgController.swift in Sources */,
-				1AC097DC1EC5BAF1000F7206 /* WRCycleScrollView.swift in Sources */,
 				1AC097B51EC58670000F7206 /* AppDelegate.swift in Sources */,
-				1AC097DA1EC5BAB8000F7206 /* WRCycleCell.swift in Sources */,
 				1A09DC191F0536A20046E853 /* NoPageControlController.swift in Sources */,
 				1A09DC1E1F05431B0046E853 /* ZhiHuController.swift in Sources */,
+				12C6C45021F023DA0001D33E /* WRProxy.swift in Sources */,
+				12C6C44F21F023DA0001D33E /* WRCycleScrollView.swift in Sources */,
+				12C6C45121F023DA0001D33E /* WRPageControl.swift in Sources */,
 				1A5D14141EFA3FA700FD1F5F /* SBController.swift in Sources */,
 				1A09DC171F0535A40046E853 /* NoEndlessController.swift in Sources */,
-				1A9DD0531ECA078000533BE9 /* WRProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +405,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -467,6 +448,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -478,13 +460,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 652U6LDTX4;
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -494,13 +476,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 652U6LDTX4;
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = WRCycleScrollViewDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -509,12 +491,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 652U6LDTX4;
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = WRCycleScrollViewDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WRCycleScrollViewDemo.app/WRCycleScrollViewDemo";
 			};
 			name = Debug;
@@ -524,12 +506,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 652U6LDTX4;
+				DEVELOPMENT_TEAM = P3X2725LYY;
 				INFOPLIST_FILE = WRCycleScrollViewDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = video.wangrui.com.WRCycleScrollViewDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WRCycleScrollViewDemo.app/WRCycleScrollViewDemo";
 			};
 			name = Release;

@@ -1,6 +1,6 @@
 # Uncomment this line to define a global platform for your project
 
-#官方Cocoapods的源
+#官方Cocoapods的源/Users/eyrefree/Documents/XWS/WRCycleScrollView/WRCycleScrollViewDemo/WRCycleScrollViewDemo.xcodeproj
 #source 'https://github.com/CocoaPods/Specs.git'
 
 #本地私有源
@@ -16,8 +16,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'WRCycleScrollViewDemo' do
-    
-    #swift
-    pod 'Kingfisher'
-
+    pod 'Kingfisher', '4.10.1'
+    pod 'WRNavigationBar_swift', :git => 'https://github.com/EFRenovation/WRNavigationBar_swift.git'
 end

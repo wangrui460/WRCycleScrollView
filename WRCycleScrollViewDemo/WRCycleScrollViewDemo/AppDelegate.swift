@@ -8,6 +8,7 @@
 //  Github地址：https://github.com/wangrui460/WRCycleScrollView
 
 import UIKit
+import WRNavigationBar_swift
 
 let MainNavBarColor = UIColor.init(red: 0/255.0, green: 175/255.0, blue: 240/255.0, alpha: 1)
 let kScreenWidth = UIScreen.main.bounds.width
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -38,10 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func setNavBarAppearence()
     {
-        UIColor.defaultStatusBarStyle = .lightContent
-        UIColor.defaultNavBarTintColor = UIColor.white
-        UIColor.defaultNavBarBarTintColor = MainNavBarColor
-        UIColor.defaultNavBarTitleColor = UIColor.white
+        WRNavigationBar.defaultStatusBarStyle = .lightContent
+        WRNavigationBar.defaultNavBarTintColor = UIColor.white
+        WRNavigationBar.defaultNavBarBarTintColor = MainNavBarColor
+        WRNavigationBar.defaultNavBarTitleColor = UIColor.white
     }
 }
 
@@ -49,7 +50,7 @@ class BaseNavigationController: UINavigationController
 {
     override func pushViewController(_ viewController: UIViewController, animated: Bool)
     {
-        if childViewControllers.count > 0 {
+        if children.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)

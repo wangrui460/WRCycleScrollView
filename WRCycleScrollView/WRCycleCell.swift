@@ -42,7 +42,7 @@ class WRCycleCell: UICollectionViewCell
         }
     }
     
-    var imageContentModel:UIViewContentMode = .scaleAspectFill {
+    var imageContentModel:UIView.ContentMode = .scaleAspectFill {
         didSet {
             imgView.contentMode = imageContentModel
         }
@@ -116,7 +116,7 @@ class WRCycleCell: UICollectionViewCell
             let labelY         = bounds.height - labelHeight
             descLabel.frame    = CGRect(x: margin, y: labelY, width: labelWidth, height: labelHeight)
             bottomView.frame   = CGRect(x: 0, y: labelY, width: imgView.bounds.width, height: labelHeight)
-            bringSubview(toFront: descLabel)
+            bringSubviewToFront(descLabel)
         }
     }
 }
