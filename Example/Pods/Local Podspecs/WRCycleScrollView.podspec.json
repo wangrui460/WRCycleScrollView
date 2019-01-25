@@ -19,10 +19,5 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "WRCycleScrollView/Classes/**/*",
-  "dependencies": {
-    "Kingfisher": [
-      ">= 4.10.0"
-    ]
-  }
+  "source_files": "WRCycleScrollView/Classes/**/*"
 }

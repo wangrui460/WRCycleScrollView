@@ -8,7 +8,6 @@
 //  Github地址：https://github.com/wangrui460/WRCycleScrollView
 
 import UIKit
-import Kingfisher
 
 public class WRCycleCell: UICollectionViewCell
 {
@@ -19,7 +18,7 @@ public class WRCycleCell: UICollectionViewCell
         didSet {
             switch imgSource {
             case let .SERVER(url):
-                imgView.kf.setImage(with: url)
+                WRCycleScrollView.imageViewCacher(imgView, url)
             case let .LOCAL(name):
                 imgView.image = UIImage(named: name)
             }

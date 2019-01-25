@@ -9,6 +9,13 @@
 
 import UIKit
 
+public extension WRCycleScrollView {
+
+    /// 缓存器
+    public static var imageViewCacher: (UIImageView, URL) -> Void = { (imageView, url) in
+        fatalError("WRCycleScrollView.imageViewCacher must custom!")
+    }
+}
 
 @objc public protocol WRCycleScrollViewDelegate
 {
@@ -20,7 +27,6 @@ import UIKit
 
 public class WRCycleScrollView: UIView, PageControlAlimentProtocol, EndlessScrollProtocol
 {
-    
     //=======================================================
     // MARK: 对外提供的属性
     //=======================================================

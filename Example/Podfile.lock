@@ -1,10 +1,10 @@
 PODS:
   - Kingfisher (4.10.1)
-  - WRCycleScrollView (0.1.0):
-    - Kingfisher (>= 4.10.0)
+  - WRCycleScrollView (0.1.0)
   - WRNavigationBar_swift (0.1.0)
 
 DEPENDENCIES:
+  - Kingfisher (= 4.10.1)
   - WRCycleScrollView (from `../`)
   - WRNavigationBar_swift (from `https://github.com/EFRenovation/WRNavigationBar_swift.git`)
 
@@ -25,9 +25,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  WRCycleScrollView: d3d873ee075ca797056721d0286df967994df7f2
+  WRCycleScrollView: 06e6fa71feefcc0da9e23d75ec6133f4614e6ac8
   WRNavigationBar_swift: b49ca280deb24616af40abae09d8ec593e75ac64
 
-PODFILE CHECKSUM: 82eeaaada13c975b714571f2566f79f73d39841f
+PODFILE CHECKSUM: 2b5278d7ddb14b20a3ab4b9bcbfff518c13499bf
 
 COCOAPODS: 1.5.3
